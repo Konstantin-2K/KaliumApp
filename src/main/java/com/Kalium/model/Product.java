@@ -1,10 +1,7 @@
 package com.Kalium.model;
 
 import com.Kalium.model.enums.CategoryEnum;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Size;
@@ -28,6 +25,7 @@ public class Product extends BaseEntity {
     @NotNull
     @PastOrPresent
     private LocalDate addedDate;
+    @Enumerated(EnumType.STRING)
     private CategoryEnum category;
 
     public String getName() {

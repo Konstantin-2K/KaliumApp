@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="~{fragments/commons::head}"></head>
 <body>
 <header th:replace="~{fragments/commons::nav}"></header>
@@ -8,19 +8,19 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 mx-auto">
-                <form class="registration-form">
+                <form class="registration-form" th:action="@{/register}" th:method="POST" th:object="${userRegisterBindingModel}">
                     <h2>Register</h2>
                     <div class="form-group">
-                        <label for="fullName">Full Name</label>
-                        <input type="text" class="form-control" id="fullName" placeholder="Enter your full name">
+                        <label for="username">Username</label>
+                        <input th:field="*{username}" type="text" class="form-control" id="username" placeholder="Enter your username">
                     </div>
                     <div class="form-group">
                         <label for="email">Email address</label>
-                        <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                        <input th:field="*{email}" type="email" class="form-control" id="email" placeholder="Enter your email">
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="Enter your password">
+                        <input th:field="*{password}" type="password" class="form-control" id="password" placeholder="Enter your password">
                     </div>
                     <div class="form-group">
                         <label for="confirmPassword">Confirm Password</label>
