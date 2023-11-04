@@ -1,5 +1,6 @@
 package com.Kalium.config;
 
+import com.Kalium.model.enums.UserRoleEnum;
 import com.Kalium.repo.UserRepository;
 import com.Kalium.service.KaliumUserDetailsService;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,7 +28,8 @@ public class SecurityConfig {
                 authorizeRequests -> authorizeRequests
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                         .requestMatchers("/login", "/register", "login-error").anonymous()
-                        .requestMatchers("/", "/home").permitAll()
+                        .requestMatchers("/", "/home", "/products/categories", "/contacts", "/products/individual-flowers").permitAll()
+                        .requestMatchers("/products/add").hasRole(UserRoleEnum.ADMIN.name())
                         .anyRequest().authenticated()
         ).formLogin(
                 formLogin -> {

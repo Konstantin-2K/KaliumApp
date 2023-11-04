@@ -1,15 +1,17 @@
 body {
     background-color: #f8f9fa;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
-.registration-form {
+.custom-form {
     max-width: 400px;
-    margin: 0 auto;
     background-color: #ffffff;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-top: 50px;
+    margin: 50px auto 0;
 }
 
 .registration-form h2 {
@@ -17,25 +19,9 @@ body {
     margin-bottom: 20px;
 }
 
-.login-form {
-    max-width: 400px;
-    margin: 0 auto;
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-top: 50px;
-}
-
 .login-form h2 {
     text-align: center;
     margin-bottom: 20px;
-}
-
-body {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
 }
 
 .content {
@@ -64,33 +50,20 @@ footer {
     border-radius: 5px;
 }
 
-
-body {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-.content {
-    flex: 1;
-}
-
-footer {
-    background-color: #f8f9fa;
-    padding: 1rem;
-}
-
-.add-product-form {
-    max-width: 400px;
-    margin: 0 auto;
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-top: 50px;
-}
-
 .add-product-form h2 {
     text-align: center;
     margin-bottom: 20px;
+}
+
+.logout {
+    border: none;
+}
+
+.contact-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+textarea {
+    resize: none;
 }

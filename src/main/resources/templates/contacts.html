@@ -8,33 +8,29 @@
     <!-- Content -->
     <div class="content">
 
+        <!-- Contact Form -->
         <div class="container">
             <div class="col-md-6 mx-auto">
-                <form class="custom-form" th:action="@{/products/add}" th:method="POST" th:object="${productAddBindingModel}">
-                    <h2>Add Product</h2>
+                <form class="custom-form">
+                    <h2>Contact Us</h2>
                     <div class="form-group">
-                        <label for="productName">Product Name</label>
-                        <input type="text" class="form-control" id="productName" placeholder="Enter product name">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" class="form-control" id="fullName" placeholder="Enter your full name">
                     </div>
                     <div class="form-group">
-                        <label for="productDescription">Product Description</label>
-                        <textarea class="form-control" id="productDescription" rows="3"
-                                  placeholder="Enter product description"></textarea>
+                        <label for="email">Email address</label>
+                        <input type="email" class="form-control" id="email" placeholder="Enter your email">
                     </div>
                     <div class="form-group">
-                        <label for="productPrice">Product Price</label>
-                        <input type="number" class="form-control" id="productPrice" placeholder="Enter product price">
+                        <label for="subject">Subject</label>
+                        <input type="subject" class="form-control" id="subject" placeholder="Enter the subject">
                     </div>
                     <div class="form-group">
-                        <label for="productCategory">Product Category</label>
-                        <select class="form-control" id="productCategory">
-                            <option value="roses">Roses</option>
-                            <option value="lilies">Lilies</option>
-                            <option value="sunflowers">Sunflowers</option>
-                            <option value="mixed">Mixed Bouquets</option>
-                        </select>
+                        <label for="message">Message</label>
+                        <textarea class="form-control" id="message" rows="6"
+                                  placeholder="Enter your message"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-block">Add Product</button>
+                    <button type="submit" class="btn btn-primary btn-block">Send Message</button>
                 </form>
             </div>
         </div>

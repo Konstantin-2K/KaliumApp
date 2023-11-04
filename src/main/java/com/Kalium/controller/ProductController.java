@@ -12,6 +12,11 @@ public class ProductController {
         return new ModelAndView("categories");
     }
 
+    @GetMapping("/products/individual-flowers")
+    public ModelAndView individualFlowers() {
+        return new ModelAndView("individual-flowers");
+    }
+
     @GetMapping("/products/add")
     public ModelAndView products() {
         return new ModelAndView("add-product");

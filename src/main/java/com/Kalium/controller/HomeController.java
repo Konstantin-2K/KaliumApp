@@ -12,4 +12,8 @@ public class HomeController {
         return new ModelAndView("index");
     }
 
+    @GetMapping("/contacts")
+    public ModelAndView contacts() {
+        return new ModelAndView("contacts");
+    }
 }
