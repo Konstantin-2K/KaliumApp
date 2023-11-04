@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/commons::head}"></head>
+<body>
+<header th:replace="~{fragments/commons::nav}"></header>
+<main>
+    <!-- Content -->
+    <div class="content">
+
+        <div class="container">
+            <div class="col-md-6 mx-auto">
+                <form class="add-product-form" th:action="@{/products/add}" th:method="POST" th:object="${productAddBindingModel}">
+                    <h2>Add Product</h2>
+                    <div class="form-group">
+                        <label for="productName">Product Name</label>
+                        <input type="text" class="form-control" id="productName" placeholder="Enter product name">
+                    </div>
+                    <div class="form-group">
+                        <label for="productDescription">Product Description</label>
+                        <textarea class="form-control" id="productDescription" rows="3"
+                                  placeholder="Enter product description"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="productPrice">Product Price</label>
+                        <input type="number" class="form-control" id="productPrice" placeholder="Enter product price">
+                    </div>
+                    <div class="form-group">
+                        <label for="productCategory">Product Category</label>
+                        <select class="form-control" id="productCategory">
+                            <option value="roses">Roses</option>
+                            <option value="lilies">Lilies</option>
+                            <option value="sunflowers">Sunflowers</option>
+                            <option value="mixed">Mixed Bouquets</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Add Product</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<footer th:replace="~{fragments/commons::footer}"></footer>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

@@ -1,9 +1,11 @@
 package com.Kalium.model;
 
+import com.Kalium.validation.FieldMatch;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
+@FieldMatch(first = "password", second = "confirmPassword", message = "Passwords should match")
 public class UserRegisterBindingModel {
     @Size(min = 3, max = 20, message = "Username must be between 3 and 20 characters!")
     private String username;

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/commons::head}"></head>
+<body>
+<header th:replace="~{fragments/commons::nav}"></header>
+
+<main>
+<!-- Content -->
+<div class="content">
+
+    <!-- Product Categories -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="product-category">
+                    <h3>Romantic Roses</h3>
+                    <img src="rose.jpg" alt="Rose Bouquet">
+                    <p>A classic arrangement of beautiful red roses. Perfect for expressing love and romance.</p>
+                    <a href="#" class="btn btn-primary">View Products</a>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="product-category">
+                    <h3>Exotic Orchids</h3>
+                    <img src="orchid.jpg" alt="Exotic Orchids">
+                    <p>An elegant mix of exotic orchids in various colors. Add a touch of sophistication to any occasion.</p>
+                    <a href="#" class="btn btn-primary">View Products</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="product-category">
+                    <h3>Vibrant Tulips</h3>
+                    <img src="tulip.jpg" alt="Vibrant Tulips">
+                    <p>Brighten up someone's day with a vibrant mix of tulips. A perfect choice for any celebration.</p>
+                    <a href="#" class="btn btn-primary">View Products</a>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="product-category">
+                    <h3>Classic Daisies</h3>
+                    <img src="daisy.jpg" alt="Classic Daisies">
+                    <p>Simple and charming, our classic daisies are perfect for any occasion. Delightful and affordable.</p>
+                    <a href="#" class="btn btn-primary">View Products</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</main>
+
+<footer th:replace="~{fragments/commons::footer}"></footer>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

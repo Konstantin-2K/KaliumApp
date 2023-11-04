@@ -5,6 +5,6 @@ import com.Kalium.model.UserRegisterBindingModel;
 
 public interface UserService {
 
-    void registerUser(UserRegisterBindingModel userRegisterBindingModel);
+    boolean registerUser(UserRegisterBindingModel userRegisterBindingModel);
 
 }

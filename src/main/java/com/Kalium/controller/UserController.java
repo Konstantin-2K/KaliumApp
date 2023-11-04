@@ -5,10 +5,12 @@ import com.Kalium.model.UserRegisterBindingModel;
 import com.Kalium.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -30,19 +32,29 @@ public class UserController {
         return new ModelAndView("register");
     }
 
-    @PostMapping("/login")
-    public ModelAndView login(@ModelAttribute("userLoginBindingModel") @Valid UserLoginBindingModel userLoginBindingModel, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return new ModelAndView("login");
-        }
 
-        return new ModelAndView("/");
+    @PostMapping("/login-error")
+    public String onFailure(
+            @ModelAttribute("email") String email,
+            Model model) {
+
+        model.addAttribute("email", email);
+        model.addAttribute("bad_credentials", "true");
+
+        return "login";
     }
 
     @PostMapping("/register")
     public ModelAndView register(@ModelAttribute("userRegisterBindingModel") @Valid UserRegisterBindingModel userRegisterBindingModel, BindingResult bindingResult) {
-        userService.registerUser(userRegisterBindingModel);
+        if (bindingResult.hasErrors()) {
+            return new ModelAndView("register");
+        }
 
-        return new ModelAndView("redirect:/login");
+        boolean isRegistered = userService.registerUser(userRegisterBindingModel);
+
+        String view = isRegistered ? "redirect:/login" : "register";
+
+        return new ModelAndView(view);
     }
+
 }
