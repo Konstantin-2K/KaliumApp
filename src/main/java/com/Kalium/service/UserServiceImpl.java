@@ -1,9 +1,11 @@
 package com.Kalium.service;
 
 import com.Kalium.model.User;
-import com.Kalium.model.UserLoginBindingModel;
 import com.Kalium.model.UserRegisterBindingModel;
+import com.Kalium.model.UserRole;
+import com.Kalium.model.enums.UserRoleEnum;
 import com.Kalium.repo.UserRepository;
+import com.Kalium.repo.UserRoleRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -17,9 +19,12 @@ public class UserServiceImpl implements UserService {
 
     private final PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    private final UserRoleRepository userRoleRepository;
+
+    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder, UserRoleRepository userRoleRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.userRoleRepository = userRoleRepository;
     }
     @Transactional
     @Override
@@ -35,7 +40,13 @@ public class UserServiceImpl implements UserService {
             return false;
         }
 
-        userRepository.save(map(userRegisterBindingModel));
+        User user = map(userRegisterBindingModel);
+
+        UserRole defaultRole = userRoleRepository.findByRole(UserRoleEnum.USER);
+
+        user.getRoles().add(defaultRole);
+
+        userRepository.save(user);
 
         return true;
     }
