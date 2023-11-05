@@ -11,7 +11,7 @@
         <div class="container">
             <div class="col-md-6 mx-auto">
                 <form class="custom-form" th:action="@{/products/add}" th:method="POST"
-                      th:object="${productAddBindingModel}">
+                      th:object="${productAddBindingModel}" enctype="multipart/form-data">
                     <h2>Add Product</h2>
                     <div class="form-group">
                         <label for="productName">Product Name</label>
@@ -29,7 +29,7 @@
                     </div>
                     <div class="form-group">
                         <label for="productPrice">Product Price</label>
-                        <input th:field="*{price}" th:errorclass="bg-danger" step="any" type="number"
+                        <input th:field="*{price}" th:errorclass="bg-danger" step="any" min="0" type="number"
                                class="form-control" id="productPrice" placeholder="Enter product price">
                         <small th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="text-danger"></small>
                     </div>
@@ -45,6 +45,11 @@
                             </option>
                         </select>
                         <small th:if="${#fields.hasErrors('category')}" th:errors="*{category}" class="text-danger"></small>
+                    </div>
+                    <div class="form-group">
+                        <label for="imageFile">Product Image</label>
+                        <input th:field="*{image}" th:errorclass="bg-danger" type="file" id="imageFile" name="imageFile" accept="image/*">
+                        <small th:if="${#fields.hasErrors('image')}" th:errors="*{image}" class="text-danger"></small>
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">Add Product</button>
                 </form>

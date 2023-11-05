@@ -9,7 +9,7 @@
     <div class="content">
         <div class="container">
             <div class="row">
-                <div th:each="product : ${products.getIndividualFlowers()}" class="col-md-4">
+                <div th:each="product : ${products.getSpecialOffers()}" class="col-md-4">
                     <div class="product-container">
                         <img th:src="@{'/products/images/' + ${product.getId()}}" th:alt="${product.name}">
                         <h2 th:text="${product.name}"></h2>

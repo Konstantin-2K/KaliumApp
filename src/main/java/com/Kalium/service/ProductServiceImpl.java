@@ -1,17 +1,20 @@
 package com.Kalium.service;
 
-import com.Kalium.model.Product;
-import com.Kalium.model.ProductAddBindingModel;
-import com.Kalium.model.User;
+import com.Kalium.model.*;
 import com.Kalium.repo.ProductRepository;
 import com.Kalium.repo.UserRepository;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -22,6 +25,10 @@ public class ProductServiceImpl implements ProductService {
     public ProductServiceImpl(ProductRepository productRepository, UserRepository userRepository) {
         this.productRepository = productRepository;
         this.userRepository = userRepository;
+    }
+
+    public byte[] extractBytes(MultipartFile image) throws IOException {
+        return image.getBytes();
     }
 
     @Override
@@ -38,7 +45,19 @@ public class ProductServiceImpl implements ProductService {
                 return false;
             }
 
+            MultipartFile image = productAddBindingModel.getImage();
+            byte[] imageBytes = null;
+
+            if (image != null && !image.isEmpty()) {
+                try {
+                    imageBytes = extractBytes(image);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
             Product product = map(productAddBindingModel, user);
+            product.setImage(imageBytes);
 
             productRepository.save(product);
 
@@ -57,4 +76,36 @@ public class ProductServiceImpl implements ProductService {
                 .setAddedDate(LocalDate.now())
                 .setCategory(productAddBindingModel.getCategory());
     }
+
+    public ProductCategoryDTO getCategoriesViewData() {
+        List<ProductDTO> allProducts = productRepository.findAll()
+                .stream().map(ProductDTO::createFromProduct)
+                .toList();
+
+        List<ProductDTO> individualFlowers = new ArrayList<>();
+        List<ProductDTO> bouquets = new ArrayList<>();
+        List<ProductDTO> presents = new ArrayList<>();
+        List<ProductDTO> specialOffers = new ArrayList<>();
+
+        for (ProductDTO productDTO : allProducts) {
+            switch (productDTO.getCategory()) {
+                case INDIVIDUAL_FLOWER -> individualFlowers.add(productDTO);
+                case BOUQUET -> bouquets.add(productDTO);
+                case PRESENT -> presents.add(productDTO);
+                case SPECIAL_OFFER -> specialOffers.add(productDTO);
+            }
+        }
+        return new ProductCategoryDTO(allProducts, individualFlowers, bouquets, presents,specialOffers);
+    }
+
+    @Override
+    public byte[] getProductImageById(UUID productId) {
+        Optional<Product> product = productRepository.findById(productId);
+        if (product.isPresent() && product.get().getImage() != null) {
+            return product.get().getImage();
+        }
+        return new byte[0];
+    }
+
+
 }

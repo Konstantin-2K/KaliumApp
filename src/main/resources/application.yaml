@@ -29,6 +29,10 @@ spring:
       static-locations: file:src/main/resources/static/
       cache:
         period: 0
+  servlet:
+    multipart:
+      max-file-size: 1MB
+      max-request-size: 1MB
 
 Kalium:
   default.admin.pass: 1234

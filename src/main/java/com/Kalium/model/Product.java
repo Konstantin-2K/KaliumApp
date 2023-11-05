@@ -28,6 +28,9 @@ public class Product extends BaseEntity {
     private LocalDate addedDate;
     @Enumerated(EnumType.STRING)
     private CategoryEnum category;
+    @Lob
+    @Column(columnDefinition = "BLOB", nullable = false, name = "image")
+    private byte[] image;
 
     public String getName() {
         return name;
@@ -80,6 +83,15 @@ public class Product extends BaseEntity {
 
     public Product setCategory(CategoryEnum category) {
         this.category = category;
+        return this;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public Product setImage(byte[] image) {
+        this.image = image;
         return this;
     }
 }
