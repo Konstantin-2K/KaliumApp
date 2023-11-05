@@ -30,7 +30,7 @@ public class ProductController {
     }
 
     @GetMapping("/products/add")
-    public ModelAndView products() {
+    public ModelAndView products(@ModelAttribute("productAddBindingModel") ProductAddBindingModel productAddBindingModel) {
         return new ModelAndView("add-product");
     }
 

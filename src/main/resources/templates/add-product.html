@@ -10,29 +10,41 @@
 
         <div class="container">
             <div class="col-md-6 mx-auto">
-                <form class="custom-form" th:action="@{/products/add}" th:method="POST" th:object="${productAddBindingModel}">
+                <form class="custom-form" th:action="@{/products/add}" th:method="POST"
+                      th:object="${productAddBindingModel}">
                     <h2>Add Product</h2>
                     <div class="form-group">
                         <label for="productName">Product Name</label>
-                        <input type="text" class="form-control" id="productName" placeholder="Enter product name">
+                        <input th:field="*{name}" th:errorclass="bg-danger" type="text" class="form-control"
+                               id="productName" placeholder="Enter product name">
+                        <small th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></small>
                     </div>
                     <div class="form-group">
                         <label for="productDescription">Product Description</label>
-                        <textarea class="form-control" id="productDescription" rows="3"
+                        <textarea th:field="*{description}" th:errorclass="bg-danger" class="form-control"
+                                  id="productDescription" rows="3"
                                   placeholder="Enter product description"></textarea>
+                        <small th:if="${#fields.hasErrors('description')}" th:errors="*{description}"
+                               class="text-danger"></small>
                     </div>
                     <div class="form-group">
                         <label for="productPrice">Product Price</label>
-                        <input type="number" class="form-control" id="productPrice" placeholder="Enter product price">
+                        <input th:field="*{price}" th:errorclass="bg-danger" step="any" type="number"
+                               class="form-control" id="productPrice" placeholder="Enter product price">
+                        <small th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="text-danger"></small>
                     </div>
                     <div class="form-group">
                         <label for="productCategory">Product Category</label>
-                        <select class="form-control" id="productCategory">
-                            <option value="roses">Roses</option>
-                            <option value="lilies">Lilies</option>
-                            <option value="sunflowers">Sunflowers</option>
-                            <option value="mixed">Mixed Bouquets</option>
+                        <select th:field="*{category}" th:errorclass="bg-danger" class="form-control"
+                                id="productCategory">
+                            <option value="">Select a category</option>
+                            <option th:each="c : ${T(com.Kalium.model.enums.CategoryEnum).values()}"
+                                    th:text="${c}"
+                                    th:value="${c}"
+                                    th:selected="${c} == *{category}">
+                            </option>
                         </select>
+                        <small th:if="${#fields.hasErrors('category')}" th:errors="*{category}" class="text-danger"></small>
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">Add Product</button>
                 </form>
