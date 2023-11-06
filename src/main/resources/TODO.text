@@ -2,20 +2,32 @@
 
 -to show that register password and confirm password are not the same ✓
 
--add product
+-add product ✓
 
--display the products in the categories
+-display the products in the categories ✓
+
+-create logic for sending contact messages to the database
+
+-implement logic for adding products to CART
+
+-maybe add an individual page for each product
+
+-add different management pages to the admin menu: contact message, user profiles, manage products(should be able to remove them or change their properties)
+
+-add a user profile page? with an image and possibility to change different profile properties like username, password, maybe a profile picture
 
 HTML PAGES:
 REGISTER ✓
 LOGIN ✓
 HOME ✓
 PRODUCT CATEGORIES ✓
-    INDIVIDUAL FLOWERS PAGE
-    BOUQUETS PAGE
-    PRESENTS PAGE
-    SPECIAL OFFERS PAGE
+    INDIVIDUAL FLOWERS PAGE ✓
+    BOUQUETS PAGE ✓
+    PRESENTS PAGE ✓
+    SPECIAL OFFERS PAGE ✓
 PRODUCT ADD ✓
 CONTACTS ✓
-ADMIN
+ADMIN: CONTACT MESSAGES, USER PROFILES, MANAGE PRODUCTS
+CART
+PROFILE?
 LOCATIONS?
