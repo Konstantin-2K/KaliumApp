@@ -1,7 +1,7 @@
 package com.Kalium.controller;
 
-import com.Kalium.model.ProductAddBindingModel;
-import com.Kalium.model.ProductCategoryDTO;
+import com.Kalium.model.productEntities.ProductAddBindingModel;
+import com.Kalium.model.productEntities.ProductCategoryDTO;
 import com.Kalium.service.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.http.MediaType;
@@ -12,10 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.io.IOException;
 import java.util.UUID;
 
 @Controller

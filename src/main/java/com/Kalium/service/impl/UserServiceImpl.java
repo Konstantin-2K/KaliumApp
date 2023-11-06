@@ -1,11 +1,12 @@
-package com.Kalium.service;
+package com.Kalium.service.impl;
 
-import com.Kalium.model.User;
-import com.Kalium.model.UserRegisterBindingModel;
-import com.Kalium.model.UserRole;
+import com.Kalium.model.userEntities.User;
+import com.Kalium.model.userEntities.UserRegisterBindingModel;
+import com.Kalium.model.userEntities.UserRole;
 import com.Kalium.model.enums.UserRoleEnum;
 import com.Kalium.repo.UserRepository;
 import com.Kalium.repo.UserRoleRepository;
+import com.Kalium.service.UserService;
 import jakarta.transaction.Transactional;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

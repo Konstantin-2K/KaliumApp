@@ -1,10 +1,8 @@
 package com.Kalium.service;
 
-import com.Kalium.model.Product;
-import com.Kalium.model.ProductAddBindingModel;
-import com.Kalium.model.ProductCategoryDTO;
+import com.Kalium.model.productEntities.ProductAddBindingModel;
+import com.Kalium.model.productEntities.ProductCategoryDTO;
 
-import java.util.Optional;
 import java.util.UUID;
 
 public interface ProductService {

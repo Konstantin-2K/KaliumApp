@@ -1,8 +1,13 @@
-package com.Kalium.service;
+package com.Kalium.service.impl;
 
-import com.Kalium.model.*;
+import com.Kalium.model.productEntities.Product;
+import com.Kalium.model.productEntities.ProductAddBindingModel;
+import com.Kalium.model.productEntities.ProductCategoryDTO;
+import com.Kalium.model.productEntities.ProductDTO;
+import com.Kalium.model.userEntities.User;
 import com.Kalium.repo.ProductRepository;
 import com.Kalium.repo.UserRepository;
+import com.Kalium.service.ProductService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;

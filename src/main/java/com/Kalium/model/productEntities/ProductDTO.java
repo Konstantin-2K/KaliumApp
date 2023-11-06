@@ -1,6 +1,7 @@
-package com.Kalium.model;
+package com.Kalium.model.productEntities;
 
 import com.Kalium.model.enums.CategoryEnum;
+import com.Kalium.model.userEntities.User;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

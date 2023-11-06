@@ -1,6 +1,8 @@
-package com.Kalium.model;
+package com.Kalium.model.productEntities;
 
+import com.Kalium.model.BaseEntity;
 import com.Kalium.model.enums.CategoryEnum;
+import com.Kalium.model.userEntities.User;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
@@ -8,7 +10,6 @@ import jakarta.validation.constraints.Size;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Optional;
 
 @Entity
 @Table(name = "products")

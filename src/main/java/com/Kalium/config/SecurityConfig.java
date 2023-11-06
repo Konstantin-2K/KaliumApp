@@ -28,7 +28,8 @@ public class SecurityConfig {
                 authorizeRequests -> authorizeRequests
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                         .requestMatchers("/login", "/register", "login-error").anonymous()
-                        .requestMatchers("/", "/home", "/products/categories", "/contacts", "/products/individual-flowers").permitAll()
+                        .requestMatchers("/", "/home", "/products/categories", "/products/individual-flowers", "/products/bouquets"
+                                , "/products/presents", "/products/special-offers", "/contacts").permitAll()
                         .requestMatchers("/products/add").hasRole(UserRoleEnum.ADMIN.name())
                         .anyRequest().authenticated()
         ).formLogin(

@@ -1,9 +1,10 @@
-package com.Kalium.model;
+package com.Kalium.model.userEntities;
 
+import com.Kalium.model.BaseEntity;
+import com.Kalium.model.productEntities.Product;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;
-import org.hibernate.annotations.ManyToAny;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "users")
-public class User extends BaseEntity{
+public class User extends BaseEntity {
     @Size(min = 3, max = 20)
     @Column(nullable = false, unique = true)
     private String username;

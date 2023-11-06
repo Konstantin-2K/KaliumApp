@@ -6,13 +6,17 @@
 
 -display the products in the categories ✓
 
--create logic for sending contact messages to the database
+-create logic for sending contact messages to the database ✓
+
+-continue with the logic to display all contact messages to messages page ✓
+
+-fix the messages drop down menu
 
 -implement logic for adding products to CART
 
--maybe add an individual page for each product
+-maybe add an individual page for each product?
 
--add different management pages to the admin menu: contact message, user profiles, manage products(should be able to remove them or change their properties)
+-add different management pages to the admin menu: contact message ✓, user profiles, manage products(should be able to remove them or change their properties)
 
 -add a user profile page? with an image and possibility to change different profile properties like username, password, maybe a profile picture
 
@@ -27,7 +31,7 @@ PRODUCT CATEGORIES ✓
     SPECIAL OFFERS PAGE ✓
 PRODUCT ADD ✓
 CONTACTS ✓
-ADMIN: CONTACT MESSAGES, USER PROFILES, MANAGE PRODUCTS
+ADMIN: CONTACT MESSAGES ✓, USER PROFILES, MANAGE PRODUCTS
 CART
 PROFILE?
 LOCATIONS?

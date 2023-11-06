@@ -1,6 +1,6 @@
 package com.Kalium.init;
 
-import com.Kalium.model.UserRole;
+import com.Kalium.model.userEntities.UserRole;
 import com.Kalium.model.enums.UserRoleEnum;
 import com.Kalium.repo.UserRoleRepository;
 import org.springframework.boot.CommandLineRunner;

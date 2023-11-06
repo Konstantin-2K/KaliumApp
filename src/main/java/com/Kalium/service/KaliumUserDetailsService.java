@@ -1,7 +1,7 @@
 package com.Kalium.service;
 
-import com.Kalium.model.User;
-import com.Kalium.model.UserRole;
+import com.Kalium.model.userEntities.User;
+import com.Kalium.model.userEntities.UserRole;
 import com.Kalium.repo.UserRepository;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

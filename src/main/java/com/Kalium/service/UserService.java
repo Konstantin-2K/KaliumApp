@@ -1,7 +1,6 @@
 package com.Kalium.service;
 
-import com.Kalium.model.UserLoginBindingModel;
-import com.Kalium.model.UserRegisterBindingModel;
+import com.Kalium.model.userEntities.UserRegisterBindingModel;
 
 public interface UserService {
 

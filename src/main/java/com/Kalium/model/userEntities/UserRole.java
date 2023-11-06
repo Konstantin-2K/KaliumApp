@@ -1,4 +1,4 @@
-package com.Kalium.model;
+package com.Kalium.model.userEntities;
 
 import com.Kalium.model.enums.UserRoleEnum;
 import jakarta.persistence.*;

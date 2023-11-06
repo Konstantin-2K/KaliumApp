@@ -1,4 +1,4 @@
-package com.Kalium.model;
+package com.Kalium.model.userEntities;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

@@ -1,36 +1,25 @@
-package com.Kalium.model;
+package com.Kalium.model.contactMessageEntities;
 
 import com.Kalium.model.enums.SubjectEnum;
-import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Size;
 
-import java.time.LocalDateTime;
-
-@Entity
-@Table(name = "contact_messages")
-public class ContactMessage extends BaseEntity {
-    @Size(min = 3, max = 20)
-    @Column(nullable = false)
+public class ContactMessageBindingModel {
+    @Size(min = 3, max = 20, message = "Name must be between 3 and 20 characters!")
+    @NotNull
     private String fullName;
 
     @Email
-    @NotNull
+    @NotNull(message = "You must enter an email!")
     private String email;
 
-    @Enumerated(EnumType.STRING)
-    @NotNull
+    @NotNull(message = "You must select a subject!")
     private SubjectEnum subject;
 
-    @NotNull
-    @Size(min = 2, max = 200)
+    @NotNull(message = "You must enter a message!")
+    @Size(min = 2, max = 200, message = "Message must be between 2 and 200 characters!")
     private String message;
-
-    @NotNull
-    @PastOrPresent
-    private LocalDateTime dateTimeSent;
 
     public String getFullName() {
         return fullName;
@@ -62,13 +51,5 @@ public class ContactMessage extends BaseEntity {
 
     public void setMessage(String message) {
         this.message = message;
-    }
-
-    public LocalDateTime getDateTimeSent() {
-        return dateTimeSent;
-    }
-
-    public void setDateTimeSent(LocalDateTime dateTimeSent) {
-        this.dateTimeSent = dateTimeSent;
     }
 }

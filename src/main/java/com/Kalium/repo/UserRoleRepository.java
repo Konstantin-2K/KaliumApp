@@ -1,6 +1,6 @@
 package com.Kalium.repo;
 
-import com.Kalium.model.UserRole;
+import com.Kalium.model.userEntities.UserRole;
 import com.Kalium.model.enums.UserRoleEnum;
 import org.springframework.data.jpa.repository.JpaRepository;
 

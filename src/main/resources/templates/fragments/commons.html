@@ -34,7 +34,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="adminDropdown">
                         <a class="dropdown-item" href="/products/add">Add product</a>
-                        <a class="dropdown-item" href="#">Option 2</a>
+                        <a class="dropdown-item" href="/contacts/messages">Contact messages</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Another Option</a>
                     </div>
@@ -43,7 +43,7 @@
                     <a class="nav-link" href="/products/categories">Products</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/contacts">Contact</a>
+                    <a class="nav-link" href="/contacts">Contact us</a>
                 </li>
                 <li class="nav-item" sec:authorize="isAuthenticated()">
                     <form th:method="post" th:action="@{/logout}">

@@ -1,4 +1,4 @@
-package com.Kalium.model;
+package com.Kalium.model.productEntities;
 
 import com.Kalium.model.enums.CategoryEnum;
 import jakarta.validation.constraints.NotBlank;

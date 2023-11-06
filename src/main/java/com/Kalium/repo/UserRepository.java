@@ -1,6 +1,6 @@
 package com.Kalium.repo;
 
-import com.Kalium.model.User;
+import com.Kalium.model.userEntities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
