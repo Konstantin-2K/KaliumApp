@@ -97,12 +97,15 @@ textarea {
 }
 
 .message-container {
-    max-width: 600px;
+    max-width: 380px;
+    width: 100%;
     margin: 20px;
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 5px;
+    overflow-wrap: break-word;
 }
+
 
 .reply-button {
     margin-top: 10px;
@@ -149,4 +152,6 @@ textarea {
     font-weight: bold;
 }
 
-
+select#subjectFilter option {
+    text-transform: none;
+}

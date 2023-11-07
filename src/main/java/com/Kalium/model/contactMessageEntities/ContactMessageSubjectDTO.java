@@ -5,21 +5,21 @@ import java.util.List;
 public class ContactMessageSubjectDTO {
     private List<ContactMessageDTO> allMessages;
 
-    private List<ContactMessageDTO> accountIssueMessages;
+    private List<ContactMessageDTO> accountMessages;
 
-    private List<ContactMessageDTO> productIssueMessages;
+    private List<ContactMessageDTO> productMessages;
 
-    private List<ContactMessageDTO> deliveryIssueMessages;
+    private List<ContactMessageDTO> deliveryMessages;
 
     private List<ContactMessageDTO> generalQuestionMessages;
 
     private List<ContactMessageDTO> otherMessages;
 
-    public ContactMessageSubjectDTO(List<ContactMessageDTO> allMessages, List<ContactMessageDTO> accountIssueMessages, List<ContactMessageDTO> productIssueMessages, List<ContactMessageDTO> deliveryIssueMessages, List<ContactMessageDTO> generalQuestionMessages, List<ContactMessageDTO> otherMessages) {
+    public ContactMessageSubjectDTO(List<ContactMessageDTO> allMessages, List<ContactMessageDTO> accountMessages, List<ContactMessageDTO> productMessages, List<ContactMessageDTO> deliveryMessages, List<ContactMessageDTO> generalQuestionMessages, List<ContactMessageDTO> otherMessages) {
         this.allMessages = allMessages;
-        this.accountIssueMessages = accountIssueMessages;
-        this.productIssueMessages = productIssueMessages;
-        this.deliveryIssueMessages = deliveryIssueMessages;
+        this.accountMessages = accountMessages;
+        this.productMessages = productMessages;
+        this.deliveryMessages = deliveryMessages;
         this.generalQuestionMessages = generalQuestionMessages;
         this.otherMessages = otherMessages;
     }
@@ -32,28 +32,28 @@ public class ContactMessageSubjectDTO {
         this.allMessages = allMessages;
     }
 
-    public List<ContactMessageDTO> getAccountIssueMessages() {
-        return accountIssueMessages;
+    public List<ContactMessageDTO> getAccountMessages() {
+        return accountMessages;
     }
 
-    public void setAccountIssueMessages(List<ContactMessageDTO> accountIssueMessages) {
-        this.accountIssueMessages = accountIssueMessages;
+    public void setAccountMessages(List<ContactMessageDTO> accountMessages) {
+        this.accountMessages = accountMessages;
     }
 
-    public List<ContactMessageDTO> getProductIssueMessages() {
-        return productIssueMessages;
+    public List<ContactMessageDTO> getProductMessages() {
+        return productMessages;
     }
 
-    public void setProductIssueMessages(List<ContactMessageDTO> productIssueMessages) {
-        this.productIssueMessages = productIssueMessages;
+    public void setProductMessages(List<ContactMessageDTO> productMessages) {
+        this.productMessages = productMessages;
     }
 
-    public List<ContactMessageDTO> getDeliveryIssueMessages() {
-        return deliveryIssueMessages;
+    public List<ContactMessageDTO> getDeliveryMessages() {
+        return deliveryMessages;
     }
 
-    public void setDeliveryIssueMessages(List<ContactMessageDTO> deliveryIssueMessages) {
-        this.deliveryIssueMessages = deliveryIssueMessages;
+    public void setDeliveryMessages(List<ContactMessageDTO> deliveryMessages) {
+        this.deliveryMessages = deliveryMessages;
     }
 
     public List<ContactMessageDTO> getGeneralQuestionMessages() {

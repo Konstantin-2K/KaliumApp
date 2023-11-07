@@ -12,14 +12,14 @@
         <div class="container">
             <label for="subjectFilter">Filter by Subject:</label>
             <select id="subjectFilter" class="form-control" onchange="filterMessages()">
-                <option value="">Select message</option>
-                <option th:each="subject : ${T(com.Kalium.model.enums.SubjectEnum).values()}" th:text="${subject}" th:value="${subject}"></option>
+                <option value="">Select subject</option>
+                <option th:each="subject : ${T(com.Kalium.model.enums.SubjectEnum).values()}" th:text="${#strings.toLowerCase(subject)}" th:value="${subject}"></option>
             </select>
         </div>
 
         <div class="container">
-            <div class="row">
-                <div th:each="message : ${messages.getAllMessages()}" class="col-md-3 mx-auto message-container" th:style="${'display: ' + (subjectFilter == '' || subjectFilter == message.subject ? 'block' : 'none')}">
+            <div class="row justify-content-center">
+                <div th:each="message : ${messages.getAllMessages()}" class="col-md-4 mb-4 message-container justify-content-start " th:style="${'display: ' + (subjectFilter == '' || subjectFilter == message.subject ? 'block' : 'none')}">
                     <p th:text="'Full name: ' + ${message.fullName}"></p>
                     <p th:text="'Email: ' + ${message.email}"></p>
                     <p th:text="'Subject: ' + ${message.subject}"></p>

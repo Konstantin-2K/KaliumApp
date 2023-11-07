@@ -34,6 +34,12 @@ spring:
       max-file-size: 1MB
       max-request-size: 1MB
 
+server:
+  error:
+    path: /error
+    whitelabel:
+      enabled: false
+
 Kalium:
   default.admin.pass: 1234
   remember.me.key: 1234

@@ -34,23 +34,23 @@ public class ContactMessageServiceImpl implements ContactMessageService {
                 .stream().map(ContactMessageDTO::createFromMessage)
                 .toList();
 
-        List<ContactMessageDTO> accountIssueMessages = new ArrayList<>();
-        List<ContactMessageDTO> productIssueMessages = new ArrayList<>();
-        List<ContactMessageDTO> deliveryIssueMessages = new ArrayList<>();
+        List<ContactMessageDTO> accountMessages = new ArrayList<>();
+        List<ContactMessageDTO> productMessages = new ArrayList<>();
+        List<ContactMessageDTO> deliveryMessages = new ArrayList<>();
         List<ContactMessageDTO> generalQuestionMessages = new ArrayList<>();
         List<ContactMessageDTO> otherMessages = new ArrayList<>();
 
         for (ContactMessageDTO contactMessageDTO : allMessages) {
             switch (contactMessageDTO.getSubject()) {
-                case ACCOUNT_ISSUE -> accountIssueMessages.add(contactMessageDTO);
-                case PRODUCT_ISSUE -> productIssueMessages.add(contactMessageDTO);
-                case DELIVERY_ISSUE -> deliveryIssueMessages.add(contactMessageDTO);
+                case ACCOUNT -> accountMessages.add(contactMessageDTO);
+                case PRODUCT -> productMessages.add(contactMessageDTO);
+                case DELIVERY -> deliveryMessages.add(contactMessageDTO);
                 case GENERAL_QUESTION -> generalQuestionMessages.add(contactMessageDTO);
                 case OTHER -> otherMessages.add(contactMessageDTO);
             }
         }
 
-        return new ContactMessageSubjectDTO(allMessages, accountIssueMessages, productIssueMessages, deliveryIssueMessages, generalQuestionMessages, otherMessages);
+        return new ContactMessageSubjectDTO(allMessages, accountMessages, productMessages, deliveryMessages, generalQuestionMessages, otherMessages);
     }
 
     private ContactMessage map(ContactMessageBindingModel contactMessageBindingModel) {
