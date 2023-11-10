@@ -1,19 +1,25 @@
 package com.Kalium.controller;
 
+import com.Kalium.model.productEntities.Product;
 import com.Kalium.model.productEntities.ProductAddBindingModel;
 import com.Kalium.model.productEntities.ProductCategoryDTO;
+import com.Kalium.model.productEntities.ProductDTO;
 import com.Kalium.service.ProductService;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.util.List;
 import java.util.UUID;
 
 @Controller
@@ -25,45 +31,48 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping("/products/categories")
-    public ModelAndView home() {
-        return new ModelAndView("categories");
+    @GetMapping("/products")
+    public ModelAndView productsPage() {
+
+        List<ProductDTO> categoriesData = productService.getCategoriesViewData("all");
+
+        return new ModelAndView("products", "products", categoriesData);
     }
 
-    @GetMapping("/products/individual-flowers")
+    @GetMapping("/products/individualFlowers")
     public ModelAndView individualFlowers() {
 
-        ProductCategoryDTO categoriesData = productService.getCategoriesViewData();
+        List<ProductDTO> categoriesData = productService.getCategoriesViewData("INDIVIDUAL_FLOWER");
 
-        return new ModelAndView("individual-flowers", "products", categoriesData);
+        return new ModelAndView("products", "products", categoriesData);
     }
 
     @GetMapping("/products/bouquets")
     public ModelAndView bouquets() {
 
-        ProductCategoryDTO categoriesData = productService.getCategoriesViewData();
+        List<ProductDTO> categoriesData = productService.getCategoriesViewData("BOUQUET");
 
-        return new ModelAndView("bouquets", "products", categoriesData);
+        return new ModelAndView("products", "products", categoriesData);
     }
 
     @GetMapping("/products/presents")
     public ModelAndView presents() {
 
-        ProductCategoryDTO categoriesData = productService.getCategoriesViewData();
+        List<ProductDTO> categoriesData = productService.getCategoriesViewData("PRESENT");
 
-        return new ModelAndView("presents", "products", categoriesData);
+        return new ModelAndView("products", "products", categoriesData);
     }
 
-    @GetMapping("/products/special-offers")
+    @GetMapping("/products/specialOffers")
     public ModelAndView specialOffers() {
 
-        ProductCategoryDTO categoriesData = productService.getCategoriesViewData();
+        List<ProductDTO> categoriesData = productService.getCategoriesViewData("SPECIAL_OFFER");
 
-        return new ModelAndView("special-offers", "products", categoriesData);
+        return new ModelAndView("products", "products", categoriesData);
     }
 
     @GetMapping("/products/add")
-    public ModelAndView products(@ModelAttribute("productAddBindingModel") ProductAddBindingModel productAddBindingModel) {
+    public ModelAndView addProduct(@ModelAttribute("productAddBindingModel") ProductAddBindingModel productAddBindingModel) {
         return new ModelAndView("add-product");
     }
 
@@ -89,4 +98,22 @@ public class ProductController {
         byte[] imageData = productService.getProductImageById(productId);
         return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(imageData);
     }
+
+    @PostMapping(value = "/products/addToCart/{productId}")
+    public ModelAndView addToCart(@PathVariable UUID productId) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        ModelAndView modelAndView = new ModelAndView("products");
+        if (authentication != null && authentication.isAuthenticated()) {
+            boolean isAdded = productService.addToCart(productId);
+
+            if (isAdded) {
+                modelAndView.setViewName("redirect:/products");
+                modelAndView.addObject("successMessage", "Product added to cart successfully");
+            }
+        } else {
+            return new ModelAndView("redirect:/login");
+        }
+        return modelAndView;
+    }
+
 }

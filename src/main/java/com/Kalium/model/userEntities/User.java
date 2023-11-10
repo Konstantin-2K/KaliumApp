@@ -6,9 +6,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "users")
@@ -31,6 +29,13 @@ public class User extends BaseEntity {
 
     @OneToMany(mappedBy = "addedBy")
     private Set<Product> addedProducts;
+
+    @ElementCollection
+    @CollectionTable(name = "user_shopping_cart", joinColumns = @JoinColumn(name = "user_id"))
+    @MapKeyJoinColumn(name = "product_id")
+    @Column(name = "quantity")
+    private Map<Product, Integer> shoppingCart = new HashMap<>();
+
 
     public String getUsername() {
         return username;
@@ -74,5 +79,13 @@ public class User extends BaseEntity {
     public User setRoles(List<UserRole> roles) {
         this.roles = roles;
         return this;
+    }
+
+    public Map<Product, Integer> getShoppingCart() {
+        return shoppingCart;
+    }
+
+    public void setShoppingCart(Map<Product, Integer> shoppingCart) {
+        this.shoppingCart = shoppingCart;
     }
 }

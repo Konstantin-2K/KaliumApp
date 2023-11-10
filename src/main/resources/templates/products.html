@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/commons::head}"></head>
+<body>
+<header th:replace="~{fragments/commons::nav}"></header>
+
+<main>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar for filters -->
+            <nav id="sidebar" class="col-md-3">
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <form th:action="@{/products}" th:method="GET">
+                                <button type="submit" class="btn btn-link btn-category">All products</button>
+                            </form>
+                        </li>
+                        <li class="nav-item">
+                            <form th:action="@{/products/individualFlowers}" th:method="GET">
+                                <button type="submit" class="btn btn-link btn-category">Individual flowers</button>
+                            </form>
+                        </li>
+                        <li class="nav-item">
+                            <form th:action="@{/products/bouquets}" th:method="GET">
+                                <button type="submit" class="btn btn-link btn-category">Bouquets</button>
+                            </form>
+                        </li>
+                        <li class="nav-item">
+                            <form th:action="@{/products/presents}" th:method="GET">
+                                <button type="submit" class="btn btn-link btn-category">Presents</button>
+                            </form>
+                        </li>
+                        <li class="nav-item">
+                            <form th:action="@{/products/specialOffers}" th:method="GET">
+                                <button type="submit" class="btn btn-link btn-category">Special offers</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-9">
+                <div class="content">
+                    <div class="row" id="product-list" th:fragment="product-list">
+                        <div th:each="product : ${products}"  class="col-md-4">
+                            <div class="product-container">
+                                <img th:src="@{'/products/images/' + ${product.id}}" th:alt="${product.name}">
+                                <h2 th:text="${product.name}"></h2>
+                                <p th:text="${product.description}"></p>
+                                <p th:text="'Price: $' + ${product.price}"></p>
+                                <form th:action="@{/products/addToCart/{id}(id=${product.id})}" th:method="POST">
+                                    <button type="submit" class="btn btn-primary buy-button">Buy Now</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div th:if="${param.successMessage}" class="alert alert-success">
+                    <p th:text="${param.successMessage}"></p>
+                </div>
+            </main>
+        </div>
+    </div>
+</main>
+
+<footer th:replace="~{fragments/commons::footer}"></footer>
+
+<script>
+    $(document).ready(function () {
+        // Check if the alert should be displayed (not a reload)
+        if (!sessionStorage.getItem('alertShown')) {
+            // Remove the fade-out class after 3 seconds (adjust as needed)
+            setTimeout(function () {
+                $("#successAlert").removeClass("fade-out");
+            }, 3000);
+
+            // Set session storage variable to indicate the alert has been shown
+            sessionStorage.setItem('alertShown', 'true');
+        }
+    });
+</script>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>

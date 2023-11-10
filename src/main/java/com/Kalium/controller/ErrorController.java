@@ -23,18 +23,16 @@ public class ErrorController implements org.springframework.boot.web.servlet.err
             }
         }
 
-        return "forward:/error";
+        return "forward:/";
     }
 
     @RequestMapping("/error-404")
     public String handle404Error() {
-        // Add logic for handling 404 errors
         return "error-404";
     }
 
     @RequestMapping("/error-500")
     public String handle500Error() {
-        // Add logic for handling 500 errors
         return "error-500";
     }
 

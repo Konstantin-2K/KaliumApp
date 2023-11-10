@@ -8,6 +8,8 @@ import com.Kalium.model.userEntities.User;
 import com.Kalium.repo.ProductRepository;
 import com.Kalium.repo.UserRepository;
 import com.Kalium.service.ProductService;
+import jakarta.servlet.http.HttpSession;
+import jakarta.transaction.Transactional;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -82,25 +84,23 @@ public class ProductServiceImpl implements ProductService {
                 .setCategory(productAddBindingModel.getCategory());
     }
 
-    public ProductCategoryDTO getCategoriesViewData() {
+    public List<ProductDTO> getCategoriesViewData(String filterType) {
         List<ProductDTO> allProducts = productRepository.findAll()
                 .stream().map(ProductDTO::createFromProduct)
                 .toList();
 
-        List<ProductDTO> individualFlowers = new ArrayList<>();
-        List<ProductDTO> bouquets = new ArrayList<>();
-        List<ProductDTO> presents = new ArrayList<>();
-        List<ProductDTO> specialOffers = new ArrayList<>();
+        if (filterType.equals("all")) {
+            return allProducts;
+        } else {
+            List<ProductDTO> requestedFlowers = new ArrayList<>();
 
-        for (ProductDTO productDTO : allProducts) {
-            switch (productDTO.getCategory()) {
-                case INDIVIDUAL_FLOWER -> individualFlowers.add(productDTO);
-                case BOUQUET -> bouquets.add(productDTO);
-                case PRESENT -> presents.add(productDTO);
-                case SPECIAL_OFFER -> specialOffers.add(productDTO);
+            for (ProductDTO productDTO : allProducts) {
+                if (productDTO.getCategory().toString().equals(filterType)) {
+                    requestedFlowers.add(productDTO);
+                }
             }
+            return requestedFlowers;
         }
-        return new ProductCategoryDTO(allProducts, individualFlowers, bouquets, presents,specialOffers);
     }
 
     @Override
@@ -112,5 +112,33 @@ public class ProductServiceImpl implements ProductService {
         return new byte[0];
     }
 
+    @Override
+    public Product getProductById(UUID productId) {
+        Optional<Product> productOptional = productRepository.findById(productId);
+        if (productOptional.isPresent()) {
+            return productOptional.get();
+        }
+        return new Product();
+    }
 
+    @Override
+    public boolean addToCart(UUID productId) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.isAuthenticated()) {
+            Object principal = authentication.getPrincipal();
+            User user = userRepository.findByEmail(((UserDetails) principal).getUsername()).orElse(new User());
+            Product product = getProductById(productId);
+
+            if (!user.getShoppingCart().containsKey(product)) {
+                user.getShoppingCart().put(product, 1);
+            } else {
+                int previousQuantity = user.getShoppingCart().get(product);
+                user.getShoppingCart().put(product, previousQuantity + 1);
+            }
+
+            userRepository.save(user);
+            return true;
+        }
+        return false;
+    }
 }
