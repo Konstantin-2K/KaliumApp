@@ -99,21 +99,4 @@ public class ProductController {
         return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(imageData);
     }
 
-    @PostMapping(value = "/products/addToCart/{productId}")
-    public ModelAndView addToCart(@PathVariable UUID productId) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        ModelAndView modelAndView = new ModelAndView("products");
-        if (authentication != null && authentication.isAuthenticated()) {
-            boolean isAdded = productService.addToCart(productId);
-
-            if (isAdded) {
-                modelAndView.setViewName("redirect:/products");
-                modelAndView.addObject("successMessage", "Product added to cart successfully");
-            }
-        } else {
-            return new ModelAndView("redirect:/login");
-        }
-        return modelAndView;
-    }
-
 }

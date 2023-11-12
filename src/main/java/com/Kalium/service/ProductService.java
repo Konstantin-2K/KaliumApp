@@ -16,9 +16,4 @@ public interface ProductService {
     List<ProductDTO> getCategoriesViewData(String filterType);
 
     byte[] getProductImageById(UUID productId);
-
-    Product getProductById(UUID productId);
-
-    boolean addToCart(UUID productId);
-
 }

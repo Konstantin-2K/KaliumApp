@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/commons::head}"></head>
+<body>
+<header th:replace="~{fragments/commons::nav}"></header>
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 order-md-2 mb-4">
+                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-muted">Your cart</span>
+                </h4>
+                <section>
+                    <h2>Checkout</h2>
+                    <ul id="checkoutProductList" class="list-group"></ul>
+                    <div id="totalPrice"></div>
+                </section>
+            </div>
+            <div class="col-md-8 order-md-1">
+                <h4 class="mb-3">Shipping address</h4>
+                <form id="checkoutForm" class="needs-validation" th:action="@{/shoppingCart/checkout}" th:method="POST"
+                      th:object="${orderAddBindingModel}">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="firstName">First name</label>
+                            <input type="text" class="form-control" id="firstName" th:field="*{userFirstName}"
+                                   th:errorclass="bg-danger">
+                            <small th:if="${#fields.hasErrors('userFirstName')}" th:errors="*{userFirstName}"
+                                   class="text-danger"></small>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="lastName">Last name</label>
+                            <input type="text" class="form-control" id="lastName" th:field="*{userLastName}"
+                                   th:errorclass="bg-danger">
+                            <small th:if="${#fields.hasErrors('userLastName')}" th:errors="*{userLastName}"
+                                   class="text-danger"></small>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="you@example.com"
+                               th:field="*{email}" th:errorclass="bg-danger">
+                        <small th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></small>
+                    </div>
+                    <div class="mb-3">
+                        <label for="address">Address</label>
+                        <input type="text" class="form-control" id="address" placeholder="1234 Main St"
+                               th:field="*{shippingAddress}" th:errorclass="bg-danger">
+                        <small th:if="${#fields.hasErrors('shippingAddress')}" th:errors="*{shippingAddress}"
+                               class="text-danger"></small>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5 mb-3">
+                            <label for="country">Country</label>
+                            <select class="custom-select d-block w-100" id="country" th:field="*{country}"
+                                    th:errorclass="bg-danger">
+                                <small th:if="${#fields.hasErrors('country')}" th:errors="*{country}"
+                                       class="text-danger"></small>
+                                <option value="">Choose...</option>
+                                <option th:value="Bulgaria">Bulgaria</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="state">State</label>
+                            <select class="custom-select d-block w-100" id="state" th:field="*{state}"
+                                    th:errorclass="bg-danger">
+                                <small th:if="${#fields.hasErrors('state')}" th:errors="*{state}"
+                                       class="text-danger"></small>
+                                <option value="">Choose...</option>
+                                <option th:value="Sofia">Sofia</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="zip">Zip</label>
+                            <input type="text" class="form-control" id="zip" placeholder="" th:field="*{zipCode}"
+                                   th:errorclass="bg-danger">
+                            <small th:if="${#fields.hasErrors('zipCode')}" th:errors="*{zipCode}"
+                                   class="text-danger"></small>
+                            <div class="invalid-feedback"> Zip code required.</div>
+                        </div>
+                    </div>
+                    <hr class="mb-4">
+                    <h4 class="mb-3">Payment</h4>
+                    <div class="d-block my-3">
+                        <div class="custom-control custom-radio">
+                            <input id="credit" name="paymentMethod" type="radio" class="custom-control-input">
+                            <label class="custom-control-label" for="credit">Credit card</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input id="debit" name="paymentMethod" type="radio" class="custom-control-input">
+                            <label class="custom-control-label" for="debit">Debit card</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="cc-name">Name on card</label>
+                            <input type="text" class="form-control" id="cc-name" th:field="*{cardName}"
+                                   th:errorclass="bg-danger">
+                            <small class="text-muted">Full name as displayed on card</small>
+                            <small th:if="${#fields.hasErrors('cardName')}" th:errors="*{cardName}"
+                                   class="text-danger"></small>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="cc-number">Credit card number</label>
+                            <input type="text" class="form-control" id="cc-number" th:field="*{cardNumber}"
+                                   th:errorclass="bg-danger">
+                            <small th:if="${#fields.hasErrors('cardNumber')}" th:errors="*{cardNumber}"
+                                   class="text-danger"></small>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 mb-3">
+                            <label for="cc-expiration">Expiration</label>
+                            <input type="text" class="form-control" id="cc-expiration" th:field="*{cardExpiration}"
+                                   th:errorclass="bg-danger">
+                            <small th:if="${#fields.hasErrors('cardExpiration')}" th:errors="*{cardExpiration}"
+                                   class="text-danger"></small>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="cc-cvv">CVV</label>
+                            <input type="text" class="form-control" id="cc-cvv" th:field="*{cardCVV}"
+                                   th:errorclass="bg-danger">
+                            <small th:if="${#fields.hasErrors('cardCVV')}" th:errors="*{cardCVV}"
+                                   class="text-danger"></small>
+                        </div>
+                    </div>
+                    <hr class="mb-4">
+                    <div class="mb-3">
+                        <label for="details">Additional details</label>
+                        <textarea rows="3" class="form-control" id="details" th:field="*{additionalDetails}"
+                                  th:errorclass="bg-danger"></textarea>
+                        <small th:if="${#fields.hasErrors('additionalDetails')}" th:errors="*{additionalDetails}"
+                               class="text-danger"></small>
+                    </div>
+                    <hr class="mb-4">
+                    <form id="checkoutButton" class="needs-validation" onsubmit="saveOrderDataAndRedirect(event)">
+                        <!-- Form content -->
+                        <button class="btn btn-primary btn-lg btn-block" type="submit">Finalize order</button>
+                    </form>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+<footer th:replace="~{fragments/commons::footer}"></footer>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+<script>
+    var storedProducts = sessionStorage.getItem('checkoutProducts');
+    if (storedProducts) {
+        var products = JSON.parse(storedProducts);
+
+        var checkoutProductList = document.getElementById('checkoutProductList');
+        var totalPriceDiv = document.getElementById('totalPrice');
+
+        if (checkoutProductList && totalPriceDiv) {
+            var totalPrice = 0;
+
+            products.forEach(function (product) {
+                var listItem = document.createElement('li');
+                listItem.className = 'list-group-item d-flex justify-content-between lh-condensed';
+                listItem.innerHTML = `<div><h6 class="my-0">${product.name}</h6><small class="text-muted">${product.quantity} x ${product.price} BGN</small></div><span class="text-muted">${(product.quantity * product.price).toFixed(2)} BGN</span>`;
+                checkoutProductList.appendChild(listItem);
+
+                totalPrice += product.quantity * product.price;
+            });
+
+            totalPriceDiv.innerHTML = `<strong>Total: ${totalPrice.toFixed(2)} BGN</strong>`;
+        }
+
+        sessionStorage.removeItem('checkoutProducts');
+    }
+</script>
+
+
+</html>

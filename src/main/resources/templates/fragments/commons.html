@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
@@ -7,7 +8,6 @@
     <meta name="_csrf" th:content="${_csrf.token}"/>
     <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
     <title>Flower Delivery</title>
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
           crossorigin="anonymous">
@@ -30,67 +30,11 @@
                 <li class="nav-item" sec:authorize="!isAuthenticated()">
                     <a class="nav-link" href="/login">Login</a>
                 </li>
-
-
-                <li class="nav-item cart-container" sec:authorize="isAuthenticated()">
-                    <a type="button" class="btn nav-link text-left" data-toggle="modal" data-target="#cartModal">
+                <li class="nav-item" sec:authorize="isAuthenticated()">
+                    <a id="viewCartBtn" class="nav-link" href="/shoppingCart">
                         View Cart
                     </a>
                 </li>
-
-                <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header border-bottom-0">
-                                <h5 class="modal-title" id="exampleModalLabel">
-                                    Your Shopping Cart
-                                </h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <table class="table table-image">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col"></th>
-                                        <th scope="col">Product</th>
-                                        <th scope="col">Price</th>
-                                        <th scope="col">Qty</th>
-                                        <th scope="col">Total</th>
-                                        <th scope="col">Actions</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td class="w-25">
-                                            <img src="" class="img-fluid img-thumbnail" alt="Sheep">
-                                        </td>
-                                        <td>Vans Sk8-Hi MTE Shoes</td>
-                                        <td>89$</td>
-                                        <td class="qty"><input type="text" class="form-control" id="input1" value="2"></td>
-                                        <td>178$</td>
-                                        <td>
-                                            <a href="#" class="btn btn-danger btn-sm">
-                                                <i class="fa fa-times"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                                <div class="d-flex justify-content-end">
-                                    <h5>Total: <span class="price text-primary">89$</span></h5>
-                                </div>
-                            </div>
-                            <div class="modal-footer border-top-0 d-flex justify-content-between">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Checkout</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
                 <li class="nav-item dropdown" sec:authorize="isAuthenticated()">
                     <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">
@@ -117,15 +61,14 @@
             </ul>
         </div>
     </nav>
-
 </header>
 
 <footer class="text-center py-4 bg-light">
     <p>&copy; 2023 Flower Delivery</p>
 </footer>
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha384-o4/z7nIi9v1Q8sZo2c2szs9rVp1gO5T5t9U5Rxhj+P7abNrsUp7BnKlsG9ZfnA+t"
         crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
@@ -133,11 +76,5 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
-
-<script>
-    $(document).ready(function() {
-        $('#cartModal').modal('show');
-    });
-</script>
 </body>
 </html>

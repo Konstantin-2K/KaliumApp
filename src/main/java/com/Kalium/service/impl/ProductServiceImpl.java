@@ -111,34 +111,4 @@ public class ProductServiceImpl implements ProductService {
         }
         return new byte[0];
     }
-
-    @Override
-    public Product getProductById(UUID productId) {
-        Optional<Product> productOptional = productRepository.findById(productId);
-        if (productOptional.isPresent()) {
-            return productOptional.get();
-        }
-        return new Product();
-    }
-
-    @Override
-    public boolean addToCart(UUID productId) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication != null && authentication.isAuthenticated()) {
-            Object principal = authentication.getPrincipal();
-            User user = userRepository.findByEmail(((UserDetails) principal).getUsername()).orElse(new User());
-            Product product = getProductById(productId);
-
-            if (!user.getShoppingCart().containsKey(product)) {
-                user.getShoppingCart().put(product, 1);
-            } else {
-                int previousQuantity = user.getShoppingCart().get(product);
-                user.getShoppingCart().put(product, previousQuantity + 1);
-            }
-
-            userRepository.save(user);
-            return true;
-        }
-        return false;
-    }
 }

@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserService {
 
         User user = map(userRegisterBindingModel);
 
-        UserRole defaultRole = userRoleRepository.findByRole(UserRoleEnum.ADMIN);
+        UserRole defaultRole = userRoleRepository.findByRole(UserRoleEnum.USER);
 
         user.getRoles().add(defaultRole);
 

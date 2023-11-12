@@ -12,7 +12,7 @@
 
 -fix the messages drop down menu ✓
 
--implement logic for adding products to CART
+-implement logic for adding products to CART ✓
 
 -maybe add an individual page for each product?
 
@@ -32,6 +32,6 @@ PRODUCT CATEGORIES ✓
 PRODUCT ADD ✓
 CONTACTS ✓
 ADMIN: CONTACT MESSAGES ✓, USER PROFILES, MANAGE PRODUCTS
-CART
+CART✓
 PROFILE?
 LOCATIONS?

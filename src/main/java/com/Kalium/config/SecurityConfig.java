@@ -33,7 +33,6 @@ public class SecurityConfig {
                         .requestMatchers("/", "/home", "/products/categories", "/products/individual-flowers", "/products/bouquets"
                                 , "/products/presents", "/products/special-offers", "/contacts").permitAll()
                         .requestMatchers(HttpMethod.POST, "/products/addToCart/**").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/products/individual-flowers").permitAll()
                         .requestMatchers("/products/add").hasRole(UserRoleEnum.ADMIN.name())
                         .anyRequest().authenticated()
         ).formLogin(
