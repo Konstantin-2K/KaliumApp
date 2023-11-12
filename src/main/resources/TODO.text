@@ -14,7 +14,7 @@
 
 -implement logic for adding products to CART ✓
 
--maybe add an individual page for each product?
+-add remove product button in shopping cart
 
 -add different management pages to the admin menu: contact message ✓, user profiles, manage products(should be able to remove them or change their properties)
 

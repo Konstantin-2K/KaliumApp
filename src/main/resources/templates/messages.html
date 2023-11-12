@@ -19,7 +19,7 @@
 
         <div class="container">
             <div class="row justify-content-center">
-                <div th:each="message : ${messages.getAllMessages()}" class="col-md-4 mb-4 message-container justify-content-start " th:style="${'display: ' + (subjectFilter == '' || subjectFilter == message.subject ? 'block' : 'none')}">
+                <div th:each="message : ${messages.getAllMessages()}" class="col-md-4 mb-4 message-container justify-content-start" th:style="${'display: ' + (subjectFilter == '' || subjectFilter == message.subject ? 'block' : 'none') + '; background-color: white;'}">
                     <p th:text="'Full name: ' + ${message.fullName}"></p>
                     <p th:text="'Email: ' + ${message.email}"></p>
                     <p th:text="'Subject: ' + ${message.subject}"></p>

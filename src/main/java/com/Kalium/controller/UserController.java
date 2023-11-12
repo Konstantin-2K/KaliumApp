@@ -1,5 +1,6 @@
 package com.Kalium.controller;
 
+import com.Kalium.model.userEntities.UserDTO;
 import com.Kalium.model.userEntities.UserLoginBindingModel;
 import com.Kalium.model.userEntities.UserRegisterBindingModel;
 import com.Kalium.service.UserService;
@@ -9,8 +10,12 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
+import java.util.UUID;
 
 @Controller
 public class UserController {
@@ -56,5 +61,27 @@ public class UserController {
         return new ModelAndView(view);
     }
 
+    @GetMapping("/users/manageUsers")
+    public ModelAndView manageUsers() {
 
+        List<UserDTO> userData = userService.getUserData();
+
+        return new ModelAndView("manage-users", "userData", userData);
+    }
+
+    @PostMapping("/users/manageUsers/deleteUser/{userId}")
+    public ModelAndView deleteUser(@PathVariable UUID userId) {
+
+        userService.deleteUser(userId);
+
+        return new ModelAndView("redirect:/users/manageUsers");
+    }
+
+    @PostMapping("/users/manageUsers/changeRole/{userId}")
+    public ModelAndView changeRole(@PathVariable UUID userId) {
+
+        userService.changeRole(userId);
+
+        return new ModelAndView("redirect:/users/manageUsers");
+    }
 }
