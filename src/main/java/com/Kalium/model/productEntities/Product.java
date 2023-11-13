@@ -33,6 +33,8 @@ public class Product extends BaseEntity {
     @Column(columnDefinition = "BLOB", nullable = false, name = "image")
     private byte[] image;
 
+    private Integer timesBought;
+
     public String getName() {
         return name;
     }
@@ -94,5 +96,13 @@ public class Product extends BaseEntity {
     public Product setImage(byte[] image) {
         this.image = image;
         return this;
+    }
+
+    public Integer getTimesBought() {
+        return timesBought;
+    }
+
+    public void setTimesBought(Integer timesBought) {
+        this.timesBought = timesBought;
     }
 }

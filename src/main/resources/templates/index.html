@@ -9,38 +9,20 @@
     <div class="jumbotron text-center">
         <h1 class="display-4">Beautiful Flowers, Delivered to Your Doorstep</h1>
         <p class="lead">Surprise your loved ones with fresh and stunning flowers</p>
-        <a class="btn btn-primary btn-lg" href="#" role="button">Order Now</a>
+        <a class="btn btn-primary btn-lg" href="/products" role="button">Shop now</a>
     </div>
 
     <div class="container">
         <div class="row">
-            <div class="col-md-4">
-                <div class="card mb-4">
-                    <img src="" class="card-img-top" alt="Flower 1">
+            <div th:each="product : ${products}" class="col-md-4">
+                <div class="most-bought card mb-4">
+                    <img th:src="@{'/products/images/' + ${product.id}}" th:alt="${product.name}">
                     <div class="card-body">
-                        <h5 class="card-title">Rose Bouquet</h5>
-                        <p class="card-text">A classic arrangement of beautiful red roses.</p>
-                        <a href="#" class="btn btn-primary">Order Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card mb-4">
-                    <img src="" class="card-img-top" alt="Flower 2">
-                    <div class="card-body">
-                        <h5 class="card-title">Lily Mix</h5>
-                        <p class="card-text">An elegant mix of lilies in various colors.</p>
-                        <a href="#" class="btn btn-primary">Order Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card mb-4">
-                    <img src="" class="card-img-top" alt="Flower 3">
-                    <div class="card-body">
-                        <h5 class="card-title">Sunflower Surprise</h5>
-                        <p class="card-text">Brighten someone's day with a cheerful sunflower arrangement.</p>
-                        <a href="#" class="btn btn-primary">Order Now</a>
+                        <h5 th:text="${product.name}" class="card-title"></h5>
+                        <p th:text="${product.price}" class="card-text"></p>
+                        <form th:action="@{/products/addToCart/{id}(id=${product.id})}" th:method="POST">
+                            <button type="submit" class="btn btn-primary buy-button">Add to cart</button>
+                        </form>
                     </div>
                 </div>
             </div>

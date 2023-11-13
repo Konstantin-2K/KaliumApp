@@ -18,4 +18,7 @@ public interface ProductService {
     byte[] getProductImageById(UUID productId);
 
     void removeProduct(UUID productId);
+
+    List<ProductDTO> getMostBought();
+
 }
