@@ -16,4 +16,6 @@ public interface ProductService {
     List<ProductDTO> getCategoriesViewData(String filterType);
 
     byte[] getProductImageById(UUID productId);
+
+    void removeProduct(UUID productId);
 }

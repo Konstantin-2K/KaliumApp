@@ -50,7 +50,7 @@
                                 <p th:text="${product.description}"></p>
                                 <p th:text="'Price: $' + ${product.price}"></p>
                                 <form th:action="@{/products/addToCart/{id}(id=${product.id})}" th:method="POST">
-                                    <button type="submit" class="btn btn-primary buy-button">Buy Now</button>
+                                    <button type="submit" class="btn btn-primary buy-button">Add to cart</button>
                                 </form>
                             </div>
                         </div>

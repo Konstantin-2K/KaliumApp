@@ -153,6 +153,7 @@ select#subjectFilter option {
 
 .price {
     margin-left: 1rem;
+    padding-left: 0;
 }
 
 .modal-footer {
@@ -266,6 +267,10 @@ body {
     margin-top: 15px;
     font-weight: bold;
     font-size: 22px;
+}
+
+.shopping-cart .remove-button {
+    margin: 24px 24px 0 0;
 }
 
 .shopping-cart .summary{
@@ -413,4 +418,17 @@ body{
     color: #4C40E0;
     font-size: 11px;
     font-weight: 700;
+}
+
+
+.success-message {
+    color: #28a745;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.icon-check {
+    color: #28a745;
+    font-size: 50px;
 }

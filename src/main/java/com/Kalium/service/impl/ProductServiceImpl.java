@@ -111,4 +111,9 @@ public class ProductServiceImpl implements ProductService {
         }
         return new byte[0];
     }
+
+    @Override
+    public void removeProduct(UUID productId) {
+        productRepository.deleteById(productId);
+    }
 }

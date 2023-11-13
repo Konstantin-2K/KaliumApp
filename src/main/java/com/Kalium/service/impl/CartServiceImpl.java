@@ -63,8 +63,19 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public void updateQuantity(UUID productId, Integer newQuantity) {
+    public void removeFromCart(UUID productId) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.isAuthenticated()) {
+            Object principal = authentication.getPrincipal();
+            User user = userRepository.findByEmail(((UserDetails) principal).getUsername()).orElse(new User());
+            Optional<Product> optionalProduct = productRepository.findById(productId);
 
+            if (optionalProduct.isPresent()) {
+                Product product = optionalProduct.get();
+                user.getShoppingCart().remove(product);
+                userRepository.save(user);
+            }
+        }
     }
 
     @Override

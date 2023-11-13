@@ -99,4 +99,19 @@ public class ProductController {
         return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(imageData);
     }
 
+    @GetMapping("/products/manageProducts")
+    public ModelAndView manageProducts() {
+
+        List<ProductDTO> productData = productService.getCategoriesViewData("all");
+
+        return new ModelAndView("manage-products", "products", productData);
+    }
+
+    @PostMapping("/products/remove/{productId}")
+    public ModelAndView addProduct(@PathVariable UUID productId) {
+
+        productService.removeProduct(productId);
+
+        return new ModelAndView("redirect:/products/manageProducts");
+    }
 }

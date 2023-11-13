@@ -7,30 +7,27 @@
 <header th:replace="~{fragments/commons::nav}"></header>
 <main>
     <div class="container mt-5">
-        <h2>User Management</h2>
+        <h2>Product Management</h2>
 
         <table class="table mt-3">
             <thead>
             <tr>
-                <th>Username</th>
-                <th>Email</th>
-                <th>Role</th>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
                 <th>Action</th>
             </tr>
             </thead>
 
             <tbody>
-            <tr th:each="user : ${userData}">
-                <td th:text="${user.username}"></td>
-                <td th:text="${user.email}"></td>
-                <td th:text="${user.allRolesAsString}"></td>
+            <tr th:each="product : ${products}">
+                <td><img th:src="@{'/products/images/' + ${product.id}}" th:alt="${product.name}"></td>
+                <td th:text="${product.name}"></td>
+                <td th:text="${product.description}"></td>
+                <td th:text="${product.price}"></td>
                 <td>
-                    <form th:action="@{'/users/manageUsers/changeRole/' + ${user.id}}" th:method="POST">
-                    <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal"
-                            th:attr="data-userid=${user.id}">Change role
-                    </button>
-                    </form>
-                    <form th:action="@{'/users/manageUsers/deleteUser/' + ${user.id}}" th:method="POST">
+                    <form th:action="@{'/products/remove/' + ${product.id}}" th:method="POST">
                         <button class="btn btn-danger btn-sm">Delete</button>
                     </form>
                 </td>

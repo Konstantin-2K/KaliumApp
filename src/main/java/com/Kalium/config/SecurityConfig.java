@@ -30,11 +30,9 @@ public class SecurityConfig {
                 authorizeRequests -> authorizeRequests
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                         .requestMatchers("/login", "/register", "/login-error").anonymous()
-                        .requestMatchers("/", "/home", "/products/categories", "/products/individual-flowers", "/products/bouquets"
-                                , "/products/presents", "/products/special-offers", "/contacts").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/products/addToCart/**").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/users/manageUsers/editUser/**").permitAll()
-                        .requestMatchers("/products/add").hasRole(UserRoleEnum.ADMIN.name())
+                        .requestMatchers("/", "/home", "products", "/contacts", "/products/images/**", "/products/specialOffers", "/products/presents", "/products/bouquets", "/products/individualFlowers").permitAll()
+                        .requestMatchers("/shoppingCart", "/products/addToCart/**", "/products/removeFromCart/**", "/shoppingCart/checkout", "/shoppingCart/orderSent").hasRole(UserRoleEnum.USER.name())
+                        .requestMatchers("/products/add", "/products/remove", "/contacts/messages", "/users/manageUsers", "/products/manageProducts").hasRole(UserRoleEnum.ADMIN.name())
                         .anyRequest().authenticated()
         ).formLogin(
                 formLogin -> {

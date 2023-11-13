@@ -14,24 +14,18 @@
 
 -implement logic for adding products to CART ✓
 
--add remove product button in shopping cart
+-add remove product button in shopping cart ✓
 
--add different management pages to the admin menu: contact message ✓, user profiles, manage products(should be able to remove them or change their properties)
-
--add a user profile page? with an image and possibility to change different profile properties like username, password, maybe a profile picture
+-add different management pages to the admin menu: contact message ✓, manage user ✓, manage products(should be able to remove them or change their properties) ✓
 
 HTML PAGES:
 REGISTER ✓
 LOGIN ✓
 HOME ✓
-PRODUCT CATEGORIES ✓
-    INDIVIDUAL FLOWERS PAGE ✓
-    BOUQUETS PAGE ✓
-    PRESENTS PAGE ✓
-    SPECIAL OFFERS PAGE ✓
+PRODUCTS ✓
 PRODUCT ADD ✓
 CONTACTS ✓
-ADMIN: CONTACT MESSAGES ✓, USER PROFILES, MANAGE PRODUCTS
+ADMIN: CONTACT MESSAGES ✓, MANAGE USERS ✓, MANAGE PRODUCTS ✓
 CART✓
 PROFILE?
 LOCATIONS?

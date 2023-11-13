@@ -14,5 +14,5 @@ public interface CartService {
 
     Map<ProductDTO, Integer> getUserCartProducts();
 
-    void updateQuantity(UUID productId, Integer newQuantity);
+    void removeFromCart(UUID productId);
 }

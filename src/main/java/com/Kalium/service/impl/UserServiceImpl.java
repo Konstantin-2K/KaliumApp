@@ -72,14 +72,10 @@ public class UserServiceImpl implements UserService {
         Optional<User> optionalUser = userRepository.findById(userId);
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
-            if(user.getRoles().get(0).getRole().equals(UserRoleEnum.ADMIN)) {
-                List<UserRole> userRoleList = new ArrayList<>();
-                userRoleList.add(userRoleRepository.findByRole(UserRoleEnum.USER));
-                user.setRoles(userRoleList);
+            if(user.getRoles().get(0).getRole().equals(UserRoleEnum.USER) && user.getRoles().size() == 1) {
+                user.getRoles().add(userRoleRepository.findByRole(UserRoleEnum.ADMIN));
             } else {
-                List<UserRole> adminRoleList = new ArrayList<>();
-                adminRoleList.add(userRoleRepository.findByRole(UserRoleEnum.ADMIN));
-                user.setRoles(adminRoleList);
+                user.getRoles().remove(userRoleRepository.findByRole(UserRoleEnum.ADMIN));
             }
             userRepository.save(user);
         }

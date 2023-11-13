@@ -35,7 +35,7 @@
                         View Cart
                     </a>
                 </li>
-                <li class="nav-item dropdown" sec:authorize="isAuthenticated()">
+                <li class="nav-item dropdown" sec:authorize="hasRole('ADMIN')">
                     <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">
                         Admin Panel
@@ -43,7 +43,9 @@
                     <div class="dropdown-menu" aria-labelledby="adminDropdown">
                         <a class="dropdown-item" href="/products/add">Add product</a>
                         <a class="dropdown-item" href="/contacts/messages">Contact messages</a>
+                        <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/users/manageUsers">Manage users</a>
+                        <a class="dropdown-item" href="/products/manageProducts">Manage products</a>
                     </div>
                 </li>
                 <li class="nav-item">

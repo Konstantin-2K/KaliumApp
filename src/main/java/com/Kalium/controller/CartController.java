@@ -43,6 +43,15 @@ public class CartController {
         return modelAndView;
     }
 
+    @PostMapping(value = "/products/removeFromCart/{productId}")
+    public ModelAndView removeFromCart(@PathVariable UUID productId) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.isAuthenticated()) {
+            cartService.removeFromCart(productId);
+        }
+        return new ModelAndView("redirect:/shoppingCart");
+    }
+
     @GetMapping("/shoppingCart")
     public ModelAndView showCart() {
 
