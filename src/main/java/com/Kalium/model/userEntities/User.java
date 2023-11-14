@@ -36,7 +36,6 @@ public class User extends BaseEntity {
     @Column(name = "quantity")
     private Map<Product, Integer> shoppingCart = new HashMap<>();
 
-
     public String getUsername() {
         return username;
     }

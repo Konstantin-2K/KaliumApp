@@ -5,7 +5,6 @@ spring:
     username: root
     password: 1234
   jpa:
-    database-platform: org.hibernate.dialect.MySQLDialect
     defer-datasource-initialization: true
     properties:
       hibernate:
@@ -33,7 +32,19 @@ spring:
     multipart:
       max-file-size: 1MB
       max-request-size: 1MB
-
+  mail:
+    host: "sandbox.smtp.mailtrap.io"
+    port: 2525
+    username: "ebb89a644e0a38"
+    password: "8f2255abd2807e"
+    properties:
+      mail:
+        smtp:
+          auth: true
+          ssl:
+            enable: false
+          starttls:
+            enable: true
 
 server:
   error:
@@ -45,8 +56,9 @@ Kalium:
   default.admin.pass: 1234
   remember.me.key: 1234
 
-
 logging:
   level:
-    org.hibernate.SQL: DEBUG
-    org.hibernate.orm.jdbc.bind: TRACE
+    root: WARN
+    com.Kalium.util.OrderLoggerInterceptor: INFO
+  file:
+    name: order-logs.log

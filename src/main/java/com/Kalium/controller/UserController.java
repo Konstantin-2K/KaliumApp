@@ -1,17 +1,16 @@
 package com.Kalium.controller;
 
+import com.Kalium.event.UserRegisterEvent;
 import com.Kalium.model.userEntities.UserDTO;
 import com.Kalium.model.userEntities.UserLoginBindingModel;
 import com.Kalium.model.userEntities.UserRegisterBindingModel;
 import com.Kalium.service.UserService;
 import jakarta.validation.Valid;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -22,8 +21,12 @@ public class UserController {
 
     private final UserService userService;
 
-    public UserController(UserService userService) {
+    private final ApplicationEventPublisher eventPublisher;
+
+    public UserController(UserService userService, ApplicationEventPublisher eventPublisher) {
         this.userService = userService;
+
+        this.eventPublisher = eventPublisher;
     }
 
     @GetMapping("/login")
@@ -49,12 +52,16 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public ModelAndView register(@ModelAttribute("userRegisterBindingModel") @Valid UserRegisterBindingModel userRegisterBindingModel, BindingResult bindingResult) {
+    public ModelAndView register(@RequestParam String email, @ModelAttribute("userRegisterBindingModel") @Valid UserRegisterBindingModel userRegisterBindingModel, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return new ModelAndView("register");
         }
 
         boolean isRegistered = userService.registerUser(userRegisterBindingModel);
+
+        if (isRegistered) {
+            eventPublisher.publishEvent(new UserRegisterEvent(this, email));
+        }
 
         String view = isRegistered ? "redirect:/login" : "register";
 
