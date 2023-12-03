@@ -5,6 +5,7 @@ import com.Kalium.model.userEntities.User;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Objects;
 import java.util.UUID;
 
 public class ProductDTO {
@@ -115,5 +116,18 @@ public class ProductDTO {
         productDTO.setImage(product.getImage());
 
         return productDTO;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ProductDTO that = (ProductDTO) o;
+        return Objects.equals(id, that.id); // Assuming id is a unique identifier for the product
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

@@ -35,6 +35,14 @@ public class Product extends BaseEntity {
 
     private Integer timesBought;
 
+    public Product() {
+    }
+
+    public Product(String name, CategoryEnum category) {
+        this.name = name;
+        this.category = category;
+    }
+
     public String getName() {
         return name;
     }

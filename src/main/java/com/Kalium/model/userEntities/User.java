@@ -36,6 +36,23 @@ public class User extends BaseEntity {
     @Column(name = "quantity")
     private Map<Product, Integer> shoppingCart = new HashMap<>();
 
+    public User() {
+    }
+
+    public User(String username, String password, String email, List<UserRole> roles) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.roles = roles;
+    }
+
+    public User(String username, String email, List<UserRole> roles) {
+        super();
+        this.username = username;
+        this.email = email;
+        this.roles = roles;
+    }
+
     public String getUsername() {
         return username;
     }

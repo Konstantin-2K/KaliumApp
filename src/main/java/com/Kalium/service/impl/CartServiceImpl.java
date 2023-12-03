@@ -67,7 +67,14 @@ public class CartServiceImpl implements CartService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.isAuthenticated()) {
             Object principal = authentication.getPrincipal();
-            User user = userRepository.findByEmail(((UserDetails) principal).getUsername()).orElse(new User());
+            User user;
+
+            if (principal instanceof UserDetails) {
+                user = userRepository.findByEmail(((UserDetails) principal).getUsername()).orElse(new User());
+            } else {
+                user = new User();
+            }
+
             Optional<Product> optionalProduct = productRepository.findById(productId);
 
             if (optionalProduct.isPresent()) {
