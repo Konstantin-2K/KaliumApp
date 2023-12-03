@@ -47,8 +47,9 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public boolean addProduct(ProductAddBindingModel productAddBindingModel) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        MultipartFile image = productAddBindingModel.getImage();
 
-        if (authentication != null && authentication.isAuthenticated()) {
+        if (authentication != null && authentication.isAuthenticated() && !image.isEmpty()) {
             Product productByName = productRepository.findByName(productAddBindingModel.getName());
 
             Object principal = authentication.getPrincipal();
@@ -58,7 +59,7 @@ public class ProductServiceImpl implements ProductService {
                 return false;
             }
 
-            MultipartFile image = productAddBindingModel.getImage();
+            image = productAddBindingModel.getImage();
             byte[] imageBytes = null;
 
             if (image != null && !image.isEmpty()) {

@@ -52,5 +52,4 @@ public class ContactsController {
         return new ModelAndView("messages", "messages", messageData);
     }
 
-
 }

@@ -85,7 +85,7 @@ public class ProductController {
         boolean isAdded = productService.addProduct(productAddBindingModel);
 
         if (!isAdded) {
-            ModelAndView modelAndView = new ModelAndView();
+            ModelAndView modelAndView = new ModelAndView("add-product");
             modelAndView.addObject("hasAddError", true);
             return modelAndView;
         }

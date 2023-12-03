@@ -13,7 +13,7 @@ public class OrderLoggerInterceptor implements HandlerInterceptor {
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
         if (request.getRequestURI().contains("/shoppingCart/checkout")) {
-            logger.info("Order placed by user: {} {}", request.getRemoteUser(), request.getSession());
+            logger.info("Order placed by user: {}", request.getRemoteUser());
         }
     }
 }

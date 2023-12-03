@@ -26,9 +26,9 @@
                 <td th:text="${user.allRolesAsString}"></td>
                 <td>
                     <form th:action="@{'/users/manageUsers/changeRole/' + ${user.id}}" th:method="POST">
-                    <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal"
-                            th:attr="data-userid=${user.id}">Change role
-                    </button>
+                        <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal"
+                                th:attr="data-userid=${user.id}">Change role
+                        </button>
                     </form>
                     <form th:action="@{'/users/manageUsers/deleteUser/' + ${user.id}}" th:method="POST">
                         <button class="btn btn-danger btn-sm">Delete</button>

@@ -3,16 +3,43 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="~{fragments/commons::head}"></head>
-<body>
+<body style="background-image: url('css/img/Untitled.png');">
 <header th:replace="~{fragments/commons::nav}"></header>
 <main>
     <div class="jumbotron text-center">
         <h1 class="display-4">Beautiful Flowers, Delivered to Your Doorstep</h1>
         <p class="lead">Surprise your loved ones with fresh and stunning flowers</p>
-        <a class="btn btn-primary btn-lg" href="/products" role="button">Shop now</a>
+        <a class="btn btn-dark btn-lg" href="/products" role="button">Shop now</a>
     </div>
 
-    <div class="container">
+    <div class="container-fluid home-background">
+        <div class="container home">
+            <div class="row">
+                <div class="col-md-6 d-flex align-items-center justify-content-center">
+                    <div class="anniversary-section text-center">
+                        <p class="lead">
+                            Established a year ago, Kalium Flower Shop has swiftly become a local favorite. Founded by a
+                            passionate florist, its commitment to quality blooms and personalized service garnered
+                            widespread acclaim. The community embraced Kalium for its stunning floral arrangements and
+                            creative designs, turning it into a go-to destination for meaningful expressions.
+                        </p>
+                        <p class="lead">
+                            As Kalium Flower Shop marks its first anniversary today, we celebrate a year of beauty,
+                            creativity, and the joy it has brought to its customers. Happy anniversary, Kalium Flower
+                            Shop!
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 d-flex align-items-center justify-content-center">
+                    <img src="css/img/product.png" alt="Kalium Flower Shop" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container best-sellers">
+        <h1 class="best-sellers">Our bestsellers</h1>
         <div class="row">
             <div th:each="product : ${products}" class="col-md-4">
                 <div class="most-bought card mb-4">
@@ -21,13 +48,14 @@
                         <h5 th:text="${product.name}" class="card-title"></h5>
                         <p th:text="${product.price}" class="card-text"></p>
                         <form th:action="@{/products/addToCart/{id}(id=${product.id})}" th:method="POST">
-                            <button type="submit" class="btn btn-primary buy-button">Add to cart</button>
+                            <button type="submit" class="btn btn-dark buy-button">Add to cart</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 </main>
 <footer th:replace="~{fragments/commons::footer}"></footer>
 

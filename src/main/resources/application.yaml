@@ -35,8 +35,8 @@ spring:
   mail:
     host: "sandbox.smtp.mailtrap.io"
     port: 2525
-    username: "ebb89a644e0a38"
-    password: "8f2255abd2807e"
+    username: "eb794a94c1036f"
+    password: "f694faa32d140a"
     properties:
       mail:
         smtp:

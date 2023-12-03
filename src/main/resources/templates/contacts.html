@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="~{fragments/commons::head}"></head>
+<head th:replace="~{fragments/commons::head}">
+</head>
 <body>
 <header th:replace="~{fragments/commons::nav}"></header>
 <main>
@@ -10,20 +11,20 @@
         <div class="container">
             <div class="col-md-6 mx-auto">
                 <form class="custom-form" th:action="@{/contacts}" th:method="POST" th:object="${contactMessageBindingModel}">
-                    <h2>Contact Us</h2>
-                    <p>Fill this form if you have any issues or questions.</p>
+                    <h2 class="text-custom-color">Contact Us</h2>
+                    <p class="text-custom-color">Fill this form if you have any issues or questions.</p>
                     <div class="form-group">
-                        <label for="fullName">Full Name</label>
+                        <label class="contacts-custom-color" for="fullName">Full Name</label>
                         <input th:field="*{fullName}" th:errorclass="bg-danger" type="text" class="form-control" id="fullName" placeholder="Enter your full name">
                         <small th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}" class="text-danger"></small>
                     </div>
                     <div class="form-group">
-                        <label for="email">Email address</label>
+                        <label class="contacts-custom-color" for="email">Email address</label>
                         <input th:field="*{email}" th:errorclass="bg-danger" type="email" class="form-control" id="email" placeholder="Enter your email">
                         <small th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></small>
                     </div>
                     <div class="form-group">
-                        <label for="subject">Subject</label>
+                        <label class="contacts-custom-color" for="subject">Subject</label>
                         <select th:field="*{subject}" th:errorclass="bg-danger" class="form-control"
                                 id="subject">
                             <option value="">Select a subject</option>
@@ -36,12 +37,12 @@
                         <small th:if="${#fields.hasErrors('subject')}" th:errors="*{subject}" class="text-danger"></small>
                     </div>
                     <div class="form-group">
-                        <label for="message">Message</label>
+                        <label class="contacts-custom-color" for="message">Message</label>
                         <textarea th:field="*{message}" th:errorclass="bg-danger" class="form-control" id="message" rows="6"
                                   placeholder="Enter your message"></textarea>
                         <small th:if="${#fields.hasErrors('message')}" th:errors="*{message}" class="text-danger"></small>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+                    <button type="submit" class="btn btn-dark btn-block">Send Message</button>
                     <div th:if="${param.successMessage}" class="alert alert-success">
                         <p th:text="${param.successMessage}"></p>
                     </div>

@@ -28,9 +28,6 @@
                                                 <div class="col-md-5 product-name">
                                                     <div class="product-name">
                                                         <p th:text="${product.key.name}"></p>
-                                                        <div class="product-info">
-                                                            <p th:text="${product.key.description}"></p>
-                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 quantity">
@@ -40,13 +37,13 @@
                                                            class="form-control quantity-input">
                                                 </div>
                                                 <div class="col-md-3 price">
-                                                    <span th:text="'BGN' + ${product.key.price}"></span>
+                                                    <span th:text="'$' + ${product.key.price}"></span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <form th:action="@{'/products/removeFromCart/' + ${product.key.id}}" th:method="POST" class="remove-button">
-                                        <button class="btn btn-danger btn-sm">X</button>
+                                        <button class="btn btn-dark btn-sm">X</button>
                                     </form>
                                 </div>
                             </div>
@@ -71,7 +68,7 @@
                                 <span class="text">Total</span>
                                 <span class="price" id="total"></span>
                             </div>
-                            <a type="button" href="/shoppingCart/checkout" class="btn btn-primary btn-lg btn-block"
+                            <a type="button" href="/shoppingCart/checkout" class="btn btn-dark btn-lg btn-block"
                                id="checkoutBtn">Checkout</a>
                         </div>
                     </div>
@@ -93,7 +90,7 @@
 
             var productItems = document.querySelectorAll('.product');
             productItems.forEach(function (item) {
-                var price = parseFloat(item.querySelector('.price').innerText.replace('BGN', ''));
+                var price = parseFloat(item.querySelector('.price').innerText.replace('$', ''));
                 var quantity = parseInt(item.querySelector('.quantity-input').innerText);
                 subtotal += price * quantity;
             });
@@ -106,13 +103,13 @@
 
             var discountAmount = subtotal * discountPercentage;
 
-            document.getElementById('subtotal').innerText = 'BGN' + subtotal.toFixed(2);
-            document.getElementById('discount').innerText = 'BGN' + discountAmount.toFixed(2);
-            document.getElementById('shipping-price').innerText = 'BGN' + shippingCost.toFixed(2);
+            document.getElementById('subtotal').innerText = '$' + subtotal.toFixed(2);
+            document.getElementById('discount').innerText = '$' + discountAmount.toFixed(2);
+            document.getElementById('shipping-price').innerText = '$' + shippingCost.toFixed(2);
 
             subtotal += shippingCost + discountAmount;
 
-            document.getElementById('total').innerText = 'BGN' + subtotal.toFixed(2);
+            document.getElementById('total').innerText = '$' + subtotal.toFixed(2);
 
             var checkoutBtn = document.getElementById('checkoutBtn');
             checkoutBtn.disabled = productItems.length === 0;
@@ -121,25 +118,24 @@
         updateSummary();
 
         function handleCheckout() {
+            localStorage.clear();
+
             var products = [];
-            var productItems = document.querySelectorAll('.product');
+            var productItems = document.querySelectorAll('.content .product');
 
             productItems.forEach(function (item) {
                 var name = item.querySelector('.product-name p').innerText;
-                var description = item.querySelector('.product-info p').innerText;
                 var quantity = parseInt(item.querySelector('.quantity-input').innerText);
-                var price = parseFloat(item.querySelector('.price').innerText.replace('BGN', ''));
+                var price = parseFloat(item.querySelector('.price').innerText.replace('$', ''));
 
                 products.push({
                     name: name,
-                    description: description,
                     quantity: quantity,
                     price: price
                 });
             });
 
-            sessionStorage.setItem('checkoutProducts', JSON.stringify(products));
-
+            localStorage.setItem('checkoutProducts', JSON.stringify(products));
             window.location.href = '/shoppingCart/checkout';
         }
 
@@ -153,6 +149,7 @@
                 }
             });
         }
+
     });
 </script>
 

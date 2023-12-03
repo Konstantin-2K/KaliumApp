@@ -1,0 +1,13 @@
+body {
+    background-image: url('img/blue-background.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+h2 {
+    color: #544569;
+}

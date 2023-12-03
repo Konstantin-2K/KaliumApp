@@ -6,20 +6,19 @@
 <body>
 <header th:replace="~{fragments/commons::nav}"></header>
 <main>
-    <div class="container">
+    <div class="container checkout">
         <div class="row">
             <div class="col-md-4 order-md-2 mb-4">
                 <h4 class="d-flex justify-content-between align-items-center mb-3">
-                    <span class="text-muted">Your cart</span>
+                    <span class="your-cart">Your cart</span>
                 </h4>
                 <section>
-                    <h2>Checkout</h2>
                     <ul id="checkoutProductList" class="list-group"></ul>
                     <div id="totalPrice"></div>
                 </section>
             </div>
-            <div class="col-md-8 order-md-1">
-                <h4 class="mb-3">Shipping address</h4>
+            <div class="col-md-8 order-md-1 shipping-details">
+                <h4 class="mb-3">Shipping details</h4>
                 <form id="checkoutForm" class="needs-validation" th:action="@{/shoppingCart/checkout}" th:method="POST"
                       th:object="${orderAddBindingModel}">
                     <div class="row">
@@ -136,7 +135,7 @@
                     </div>
                     <hr class="mb-4">
                     <form id="checkoutButton" class="needs-validation" onsubmit="saveOrderDataAndRedirect(event)">
-                        <button class="btn btn-primary btn-lg btn-block" type="submit">Finalize order</button>
+                        <button class="btn btn-dark btn-lg btn-block" type="submit">Finalize order</button>
                     </form>
 
                 </form>
@@ -150,7 +149,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
 <script>
-    var storedProducts = sessionStorage.getItem('checkoutProducts');
+    var storedProducts = localStorage.getItem('checkoutProducts');
     if (storedProducts) {
         var products = JSON.parse(storedProducts);
 
@@ -171,8 +170,13 @@
 
             totalPriceDiv.innerHTML = `<strong>Total: ${totalPrice.toFixed(2)} BGN</strong>`;
         }
+    }
 
-        sessionStorage.removeItem('checkoutProducts');
+    var finalizeOrderBtn = document.querySelector('#checkoutButton button');
+    if (finalizeOrderBtn) {
+        finalizeOrderBtn.addEventListener('click', function () {
+            localStorage.clear();
+        });
     }
 </script>
 

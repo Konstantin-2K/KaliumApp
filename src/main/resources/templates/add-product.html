@@ -48,9 +48,11 @@
                     <div class="form-group">
                         <label for="imageFile">Product Image</label>
                         <input th:field="*{image}" th:errorclass="bg-danger" type="file" id="imageFile" name="imageFile" accept="image/*">
-                        <small th:if="${#fields.hasErrors('image')}" th:errors="*{image}" class="text-danger"></small>
+                        <br>
+                        <small th:if="${hasAddError}" class="text-danger">Please upload an image file.</small>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-block">Add Product</button>
+
+                    <button type="submit" class="btn btn-dark btn-block">Add Product</button>
                 </form>
             </div>
         </div>

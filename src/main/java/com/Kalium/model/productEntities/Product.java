@@ -15,7 +15,7 @@ import java.time.LocalDate;
 @Table(name = "products")
 public class Product extends BaseEntity {
     @Size(min = 3, max = 20)
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String name;
     @Size(min = 2, max = 200)
     @Column(nullable = false)
