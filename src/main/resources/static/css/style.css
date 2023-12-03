@@ -225,6 +225,7 @@ textarea {
 }
 
 .message-container {
+    background-color: #b69cd9;
     max-width: 380px;
     width: 100%;
     margin: 20px;
@@ -249,7 +250,7 @@ textarea {
 }
 
 .popup {
-
+    background-color: #b69cd9;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -430,6 +431,13 @@ h2 {
     background-color: #B69CD9;
     height: 100%;
     padding: 30px;
+}
+
+.mt-5 {
+    background-color: #B69CD9;
+    padding: 15px;
+    margin-bottom: 48px;
+    border-radius: 5px;
 }
 
 .shopping-cart .summary h3 {

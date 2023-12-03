@@ -29,7 +29,7 @@
                                 id="subject">
                             <option value="">Select a subject</option>
                             <option th:each="s : ${T(com.Kalium.model.enums.SubjectEnum).values()}"
-                                    th:text="${s}"
+                                    th:text="${#strings.capitalize(#strings.toLowerCase(#strings.replace(s.toString(), '_', ' ')))}"
                                     th:value="${s}"
                                     th:selected="${s} == *{subject}">
                             </option>

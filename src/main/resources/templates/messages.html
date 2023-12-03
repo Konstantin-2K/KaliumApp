@@ -13,8 +13,11 @@
             <label for="subjectFilter">Filter by Subject:</label>
             <select id="subjectFilter" class="form-control" onchange="filterMessages()">
                 <option value="">Select subject</option>
-                <option th:each="subject : ${T(com.Kalium.model.enums.SubjectEnum).values()}" th:text="${#strings.toLowerCase(subject)}" th:value="${subject}"></option>
+                <option th:each="subject : ${T(com.Kalium.model.enums.SubjectEnum).values()}"
+                        th:text="${#strings.capitalize(#strings.toLowerCase(#strings.replace(subject.toString(), '_', ' ')))}"
+                        th:value="${subject}"></option>
             </select>
+
         </div>
 
         <div class="container">
