@@ -26,17 +26,14 @@ class EmailServiceTest {
 
     @Test
     void sendWelcomeEmail_ShouldSendEmailSuccessfully() {
-        // Arrange
         String toEmail = "test@example.com";
         SimpleMailMessage expectedMessage = new SimpleMailMessage();
         expectedMessage.setTo(toEmail);
         expectedMessage.setSubject("Welcome to Kalium!");
         expectedMessage.setText("Thank you for registering! Welcome to our flower shop.");
 
-        // Act
         emailService.sendWelcomeEmail(toEmail);
 
-        // Assert
         verify(javaMailSender).send(expectedMessage);
     }
 }

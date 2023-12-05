@@ -53,22 +53,18 @@ public class OrderServiceImplTest {
 
     @BeforeEach
     void setUp() {
-        // Set up the security context
         when(securityContext.getAuthentication()).thenReturn(authentication);
         SecurityContextHolder.setContext(securityContext);
     }
 
     @Test
     void addOrder_ShouldNotAddOrder_WhenUserIsNotAuthenticated() {
-        // Arrange
         OrderAddBindingModel orderAddBindingModel = new OrderAddBindingModel();
 
         when(authentication.getPrincipal()).thenReturn("anonymousUser");
 
-        // Act
         boolean result = orderService.addOrder(orderAddBindingModel);
 
-        // Assert
         assertFalse(result);
         verify(productRepository, never()).save(any(Product.class));
         verify(orderRepository, never()).save(any(Order.class));

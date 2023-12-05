@@ -1,8 +1,5 @@
 package com.Kalium.model.userEntities;
 
-import com.Kalium.model.userEntities.User;
-import com.Kalium.model.userEntities.UserDTO;
-import com.Kalium.model.userEntities.UserRole;
 import com.Kalium.model.enums.UserRoleEnum;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +13,6 @@ class UserDTOTest {
 
     @Test
     void createFromUser_ShouldMapUserToUserDTO() {
-        // Arrange
         UUID userId = UUID.randomUUID();
         String username = "testUser";
         String email = "test@example.com";
@@ -29,10 +25,8 @@ class UserDTOTest {
         User user = new User(username, email, roles);
         user.setId(userId);
 
-        // Act
         UserDTO userDTO = UserDTO.createFromUser(user);
 
-        // Assert
         assertEquals(userId, userDTO.getId());
         assertEquals(username, userDTO.getUsername());
         assertEquals(email, userDTO.getEmail());
@@ -41,7 +35,6 @@ class UserDTOTest {
 
     @Test
     void getAllRolesAsString_ShouldReturnCommaSeparatedRoles() {
-        // Arrange
         UserRole userRole1 = new UserRole();
         userRole1.setRole(UserRoleEnum.USER);
 
@@ -55,10 +48,8 @@ class UserDTOTest {
         UserDTO userDTO = new UserDTO();
         userDTO.setRoles(roles);
 
-        // Act
         String rolesAsString = userDTO.getAllRolesAsString();
 
-        // Assert
         assertEquals("USER, ADMIN", rolesAsString);
     }
 }

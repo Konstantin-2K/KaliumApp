@@ -32,7 +32,6 @@ class CartServiceImplTest {
 
     @Test
     void addToCart_WithAuthenticatedUser_ShouldAddToShoppingCart() {
-        // Arrange
         Authentication authenticationMock = mock(Authentication.class);
         UserDetails userDetailsMock = mock(UserDetails.class);
         when(authenticationMock.isAuthenticated()).thenReturn(true);
@@ -114,7 +113,6 @@ class CartServiceImplTest {
 
     @Test
     void removeFromCart_WithAuthenticatedUserAndExistingProduct_ShouldRemoveFromCart() {
-        // Arrange
         Authentication authenticationMock = mock(Authentication.class);
         UserDetails userDetailsMock = mock(UserDetails.class);
         when(authenticationMock.isAuthenticated()).thenReturn(true);

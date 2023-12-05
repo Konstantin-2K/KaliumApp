@@ -115,7 +115,6 @@ class ProductServiceImplTest {
 
     @Test
     void getCategoriesViewData_ShouldReturnAllProducts_WhenFilterTypeIsAll() {
-        // Arrange
         String filterType = "all";
         List<Product> mockProducts = Arrays.asList(
                 new Product("Flower1", CategoryEnum.INDIVIDUAL_FLOWER),
@@ -124,17 +123,14 @@ class ProductServiceImplTest {
         );
         when(productRepositoryMock.findAll()).thenReturn(mockProducts);
 
-        // Act
         List<ProductDTO> result = productService.getCategoriesViewData(filterType);
 
-        // Assert
         assertEquals(mockProducts.size(), result.size());
         verify(productRepositoryMock, times(1)).findAll();
     }
 
     @Test
     void getCategoriesViewData_ShouldReturnFilteredProducts_WhenFilterTypeIsSpecific() {
-        // Arrange
         String filterType = "INDIVIDUAL_FLOWER";
         List<Product> mockProducts = Arrays.asList(
                 new Product("Flower1", CategoryEnum.INDIVIDUAL_FLOWER),
@@ -143,10 +139,8 @@ class ProductServiceImplTest {
         );
         when(productRepositoryMock.findAll()).thenReturn(mockProducts);
 
-        // Act
         List<ProductDTO> result = productService.getCategoriesViewData(filterType);
 
-        // Assert
         assertEquals(2, result.size());
         for (ProductDTO productDTO : result) {
             assertEquals(CategoryEnum.INDIVIDUAL_FLOWER.toString(), productDTO.getCategory().toString());
@@ -156,7 +150,6 @@ class ProductServiceImplTest {
 
     @Test
     void getProductImageById_ShouldReturnImage_WhenProductExistsWithImage() {
-        // Arrange
         UUID productId = UUID.randomUUID();
         byte[] mockImage = {0x01, 0x02, 0x03};
         Product mockProduct = new Product("TestProduct", CategoryEnum.INDIVIDUAL_FLOWER);
@@ -164,44 +157,35 @@ class ProductServiceImplTest {
         mockProduct.setImage(mockImage);
         when(productRepositoryMock.findById(productId)).thenReturn(Optional.of(mockProduct));
 
-        // Act
         byte[] result = productService.getProductImageById(productId);
 
-        // Assert
         assertArrayEquals(mockImage, result);
         verify(productRepositoryMock, times(1)).findById(productId);
     }
 
     @Test
     void getProductImageById_ShouldReturnEmptyArray_WhenProductDoesNotExistOrHasNoImage() {
-        // Arrange
         UUID productId = UUID.randomUUID();
         when(productRepositoryMock.findById(productId)).thenReturn(Optional.empty());
 
-        // Act
         byte[] result = productService.getProductImageById(productId);
 
-        // Assert
         assertArrayEquals(new byte[0], result);
         verify(productRepositoryMock, times(1)).findById(productId);
     }
 
     @Test
     void removeProduct_ShouldRemoveProduct_WhenProductIdExists() {
-        // Arrange
         UUID productId = UUID.randomUUID();
         doNothing().when(productRepositoryMock).deleteById(productId);
 
-        // Act
         productService.removeProduct(productId);
 
-        // Assert
         verify(productRepositoryMock, times(1)).deleteById(productId);
     }
 
     @Test
     void getMostBought_ShouldReturnMostBoughtProducts() {
-        // Arrange
         List<Product> mockProducts = Arrays.asList(
                 new Product("Flower1", CategoryEnum.INDIVIDUAL_FLOWER),
                 new Product("Flower2", CategoryEnum.INDIVIDUAL_FLOWER),
@@ -210,10 +194,8 @@ class ProductServiceImplTest {
         when(productRepositoryMock.findAll(any(PageRequest.class)))
                 .thenReturn(new PageImpl<>(mockProducts));
 
-        // Act
         List<ProductDTO> result = productService.getMostBought();
 
-        // Assert
         assertEquals(3, result.size());
         verify(productRepositoryMock, times(1)).findAll(any(PageRequest.class));
     }

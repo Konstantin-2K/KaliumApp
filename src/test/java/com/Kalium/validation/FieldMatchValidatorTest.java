@@ -10,18 +10,15 @@ class FieldMatchValidatorTest {
 
     @Test
     void isValid_WhenFieldsMatch_ShouldReturnTrue() {
-        // Arrange
         FieldMatchValidator validator = new FieldMatchValidator();
         validator.initialize(createFieldMatch("password", "confirmPassword", "Passwords do not match"));
 
-        // Act
         TestObject testObject = new TestObject();
         testObject.setPassword("password123");
         testObject.setConfirmPassword("password123");
 
         boolean isValid = validator.isValid(testObject, null);
 
-        // Assert
         assertTrue(isValid);
     }
 

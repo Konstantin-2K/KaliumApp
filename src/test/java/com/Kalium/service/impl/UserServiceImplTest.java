@@ -8,9 +8,6 @@ import com.Kalium.repo.UserRepository;
 import com.Kalium.repo.UserRoleRepository;
 import com.Kalium.service.UserService;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.*;

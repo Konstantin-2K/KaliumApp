@@ -24,14 +24,11 @@ class CartControllerTest {
 
     @Test
     void addToCart_WhenNotAuthenticated_ReturnsRedirectToLogin() {
-        // Arrange
         UUID productId = UUID.randomUUID();
         SecurityContextHolder.clearContext();
 
-        // Act
         ModelAndView modelAndView = cartController.addToCart(productId);
 
-        // Assert
         assertEquals("redirect:/login", modelAndView.getViewName());
     }
 }
